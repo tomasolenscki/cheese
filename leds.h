@@ -13,11 +13,12 @@
 
 #define BRIGHTNESS          125   //brilho dos leds  0 a 255
 
-/******************************************************************
-DESCOMENTAR
-*******************************************************************
+
 void acende_todos_os_leds(void);
+void apaga_todos_os_leds(void);
 void acende_casa(int sensores[5][5]);
+void inicial_cheese();
+void acende_possiveis_jogadas();
 
 CRGB leds0[NUM_LEDS];
 CRGB leds1[NUM_LEDS];
@@ -25,5 +26,5 @@ CRGB leds2[NUM_LEDS];
 CRGB leds3[NUM_LEDS];
 CRGB leds4[NUM_LEDS];
 
-***********************************************/
+
 #endif // LEDS_H_INCLUDED

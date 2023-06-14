@@ -4,13 +4,11 @@
 #include "leds.h"
 #include "hall.h"
 #include "lcd.h"
+#include "botao.h"
+#include "jogo.h"
 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
-int codigoEvento = NENHUM_EVENTO;
-int codigoAcao;
-int estado = IDLE;
-int eventoInterno = NENHUM_EVENTO;  
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -18,11 +16,10 @@ void setup() {
   lcd.begin(16,2);
   lcd.clear();
   Serial.println("Maquina de Estados iniciada");
+  lcd.print("Escolha o modo: ");
   // make the pushbutton's pin an input:
 
-/******************************************************************
-DESCOMENTAR
-*******************************************************************
+
   inicializa_pinos();
 
   FastLED.addLeds<WS2812B, LED_PIN_1, COLOR_ORDER>(leds0, NUM_LEDS).setCorrection(TypicalLEDStrip);
@@ -33,19 +30,23 @@ DESCOMENTAR
 
     // set master brightness control
   FastLED.setBrightness(BRIGHTNESS);
-*/
+
+  apaga_todos_os_leds();
+
 
 }
 
 
 void loop() {
-
   
   if (eventoInterno == NENHUM_EVENTO) {
     codigoEvento = obterEvento();
   }
   else {
+    Serial.println("evento interno:");
+    Serial.println(eventoInterno);
     codigoEvento = eventoInterno;
+    eventoInterno = NENHUM_EVENTO; 
   }
 
   if (codigoEvento != NENHUM_EVENTO)
@@ -60,4 +61,5 @@ void loop() {
     Serial.print(" Acao: ");
     Serial.println(codigoAcao);
   }
+  delay(100);
 }

@@ -16,121 +16,121 @@ int obterProximoEstado(int estado, int codigoEvento) {
 SOMENTE PARA TESTES
 vvvvvvvvvvvvvvvvvvv
 *************************************/
-char buf[10];
-char* ihm_obterTeclas()
-{
-    int read_count = 0;
+// char buf[10];
+// char* ihm_obterTeclas()
+// {
+//     int read_count = 0;
     
-    // confere inputs
-    if (Serial.available() > 0) {
-      // le bytes de entrada
-      read_count = Serial.readBytesUntil('\n', buf, sizeof(buf)/sizeof(buf[0]) - 1);
-    }
+//     // confere inputs
+//     if (Serial.available() > 0) {
+//       // le bytes de entrada
+//       read_count = Serial.readBytesUntil('\n', buf, sizeof(buf)/sizeof(buf[0]) - 1);
+//     }
 
-    buf[read_count] = '\0';
-    if(read_count > 0) {
-      //Serial.println(buf);
-    }
-    return buf;
-}
+//     buf[read_count] = '\0';
+//     if(read_count > 0) {
+//       //Serial.println(buf);
+//     }
+//     return buf;
+// }
 
-char* teclas;
+// char* teclas;
 
-int decodificarRIGHT(){
-    if (teclas[0] == 'R' && teclas[1] == '\0')
-        return true;
-    return false;
-}
-int decodificarUP(){
-    if (teclas[0] == 'U' && teclas[1] == '\0')
-        return true;
-    return false;
-}
-int decodificarDOWN(){
-    if (teclas[0] == 'D' && teclas[1] == '\0')
-        return true;
-    return false;
-}
-int decodificarLEFT(){
-    if (teclas[0] == 'L' && teclas[1] == '\0')
-        return true;
-    return false;
-}
-int decodificarPOSICIONAMENTO_DAS_PECAS(){
-    if (teclas[0] == 'P' && teclas[1] == 'D' && teclas[2] == 'P')
-        return true;
-    return false;
-}
-int decodificarBOTAO_TIMER(){
-    if (teclas[0] == 'B' && teclas[1] == 'T')
-        return true;
-    return false;
-}
-int decodificarLEVANTA_PECA(){
-    if (teclas[0] == 'L' && teclas[1] == 'P' && teclas[2] == '\0')
-        return true;
-    return false;
-}
-int decodificarDEVOLVE_PECA(){
-    if (teclas[0] == 'D' && teclas[1] == 'P')
-        return true;
-    return false;
-}
-int decodificarESCOLHE_CASA(){
-    if (teclas[0] == 'E' && teclas[1] == 'C')
-        return true;
-    return false;
-}
-int decodificarESCOLHA_ILEGAL(){
-    if (teclas[0] == 'E' && teclas[1] == 'I')
-        return true;
-    return false;
-}
-int decodificarLEVANTA_PECA_ILEGAL(){
-    if (teclas[0] == 'L' && teclas[1] == 'P' && teclas[2] == 'I')
-        return true;
-    return false;
-}
-int decodificarVITORIA_DERROTA(){
-    if (teclas[0] == 'V' && teclas[1] == 'D')
-        return true;
-    return false;
-}
-int decodificarLEGAL_nULTIMO(){
-    if (teclas[0] == 'L' && teclas[1] == 'n' && teclas[2] == 'U')
-        return true;
-    return false;
-}
-int decodificarLEGAL_ULTIMO(){
-    if (teclas[0] == 'L' && teclas[1] == 'U')
-        return true;
-    return false;
-}
-int decodificarACABA_TEMPO(){
-    if (teclas[0] == 'A' && teclas[1] == 'T')
-        return true;
-    return false;
-}
-int decodificarLEFT_T(){
-    if (teclas[0] == 'L' && teclas[1] == 'T')
-        return true;
-    return false;
-}
-int decodificarLEFT_J(){
-    if (teclas[0] == 'L' && teclas[1] == 'J')
-        return true;
-    return false;
-}
-int decodificarLEFT_I(){
-    if (teclas[0] == 'L' && teclas[1] == 'I')
-        return true;
-    return false;
-}
-int decodificarLEFT_V(){
-    if (teclas[0] == 'L' && teclas[1] == 'V')
-        return true;
-    return false;
-}
+// int decodificarRIGHT(){
+//     if (teclas[0] == 'R' && teclas[1] == '\0')
+//         return true;
+//     return false;
+// }
+// int decodificarUP(){
+//     if (teclas[0] == 'U' && teclas[1] == '\0')
+//         return true;
+//     return false;
+// }
+// int decodificarDOWN(){
+//     if (teclas[0] == 'D' && teclas[1] == '\0')
+//         return true;
+//     return false;
+// }
+// int decodificarLEFT(){
+//     if (teclas[0] == 'L' && teclas[1] == '\0')
+//         return true;
+//     return false;
+// }
+// int decodificarPOSICIONAMENTO_DAS_PECAS(){
+//     if (teclas[0] == 'P' && teclas[1] == 'D' && teclas[2] == 'P')
+//         return true;
+//     return false;
+// }
+// int decodificarBOTAO_TIMER(){
+//     if (teclas[0] == 'B' && teclas[1] == 'T')
+//         return true;
+//     return false;
+// }
+// int decodificarLEVANTA_PECA(){
+//     if (teclas[0] == 'L' && teclas[1] == 'P' && teclas[2] == '\0')
+//         return true;
+//     return false;
+// }
+// int decodificarDEVOLVE_PECA(){
+//     if (teclas[0] == 'D' && teclas[1] == 'P')
+//         return true;
+//     return false;
+// }
+// int decodificarESCOLHE_CASA(){
+//     if (teclas[0] == 'E' && teclas[1] == 'C')
+//         return true;
+//     return false;
+// }
+// int decodificarESCOLHA_ILEGAL(){
+//     if (teclas[0] == 'E' && teclas[1] == 'I')
+//         return true;
+//     return false;
+// }
+// int decodificarLEVANTA_PECA_ILEGAL(){
+//     if (teclas[0] == 'L' && teclas[1] == 'P' && teclas[2] == 'I')
+//         return true;
+//     return false;
+// }
+// int decodificarVITORIA_DERROTA(){
+//     if (teclas[0] == 'V' && teclas[1] == 'D')
+//         return true;
+//     return false;
+// }
+// int decodificarLEGAL_nULTIMO(){
+//     if (teclas[0] == 'L' && teclas[1] == 'n' && teclas[2] == 'U')
+//         return true;
+//     return false;
+// }
+// int decodificarLEGAL_ULTIMO(){
+//     if (teclas[0] == 'L' && teclas[1] == 'U')
+//         return true;
+//     return false;
+// }
+// int decodificarACABA_TEMPO(){
+//     if (teclas[0] == 'A' && teclas[1] == 'T')
+//         return true;
+//     return false;
+// }
+// int decodificarLEFT_T(){
+//     if (teclas[0] == 'L' && teclas[1] == 'T')
+//         return true;
+//     return false;
+// }
+// int decodificarLEFT_J(){
+//     if (teclas[0] == 'L' && teclas[1] == 'J')
+//         return true;
+//     return false;
+// }
+// int decodificarLEFT_I(){
+//     if (teclas[0] == 'L' && teclas[1] == 'I')
+//         return true;
+//     return false;
+// }
+// int decodificarLEFT_V(){
+//     if (teclas[0] == 'L' && teclas[1] == 'V')
+//         return true;
+//     return false;
+// }
 // int decodificarRIGHT_JOGAR_NOVAMENTE(){
 //     if (teclas[0] == 'R' && teclas[1] == 'J' && teclas[2] == 'N')
 //         return true;
@@ -143,109 +143,109 @@ int decodificarLEFT_V(){
 // }
 
 
-int obterEvento() {
-    teclas = ihm_obterTeclas();
+// int obterEvento() {
+//     teclas = ihm_obterTeclas();
 
-    if ((decodificarRIGHT() && estado == IDLE) || (analogRead(0) < 60 && estado == IDLE)) {
-        return RIGHT_ESCOLHE_MODO; 
-    }
-    else if (decodificarUP()) {
-        return UP; 
-    }
-    else if (decodificarDOWN()) {
-        return DOWN; 
-    }
-    else if (decodificarLEFT()) {
-        return LEFT; 
-    }
-    else if (decodificarPOSICIONAMENTO_DAS_PECAS()) {
-        return POSICIONAMENTO_DAS_PECAS; 
-    }
-    else if (decodificarBOTAO_TIMER()) {
-        return BOTAO_TIMER; 
-    }
-    else if (decodificarLEVANTA_PECA()) {
-        return LEVANTA_PECA; 
-    }
-    else if (decodificarDEVOLVE_PECA()) {
-        return DEVOLVE_PECA; 
-    }
-    else if (decodificarESCOLHE_CASA()) {
-        return ESCOLHE_CASA; 
-    }
-    else if (decodificarESCOLHA_ILEGAL()) {
-        return ESCOLHA_ILEGAL; 
-    }
-    else if (decodificarLEVANTA_PECA_ILEGAL()) {
-        return LEVANTA_PECA_ILEGAL; 
-    }
-    else if (decodificarVITORIA_DERROTA()) {
-        return VITORIA_DERROTA; 
-    }
-    else if (decodificarLEGAL_nULTIMO()) {
-        return LEGAL_nULTIMO; 
-    }
-    else if (decodificarLEGAL_ULTIMO()) {
-        return LEGAL_ULTIMO; 
-    }
-    else if (decodificarACABA_TEMPO()) {
-        return ACABA_TEMPO; 
-    }
-    else if (decodificarLEFT_T()) {
-        return LEFT_T; 
-    }
-    else if (decodificarLEFT_J()) {
-        return LEFT_J; 
-    }
-    else if (decodificarLEFT_I()) {
-        return LEFT_I; 
-    }
-    else if (decodificarLEFT_V()) {
-        return LEFT_V; 
-    }
-    else if ((decodificarRIGHT() && (contador_vertical_fim == 0) && estado == FIM) || (analogRead(0) < 60 && contador_vertical_fim == 0 && estado == FIM)) {
-        return RIGHT_JOGAR_NOVAMENTE; 
-    }
-    else if ((decodificarRIGHT() && (contador_vertical_fim == 1) && estado == FIM) || (analogRead(0) < 60 && contador_vertical_fim == 1 && estado == FIM)) {
-        return RIGHT_MENU_PRINCIPAL; 
-    }
-    else {
-        return NENHUM_EVENTO;
-    }
-}
+//     if ((decodificarRIGHT() && estado == IDLE) || (analogRead(0) < 60 && estado == IDLE)) {
+//         return RIGHT_ESCOLHE_MODO; 
+//     }
+//     else if (decodificarUP()) {
+//         return UP; 
+//     }
+//     else if (decodificarDOWN()) {
+//         return DOWN; 
+//     }
+//     else if (decodificarLEFT()) {
+//         return LEFT; 
+//     }
+//     else if (decodificarPOSICIONAMENTO_DAS_PECAS()) {
+//         return POSICIONAMENTO_DAS_PECAS; 
+//     }
+//     else if (decodificarBOTAO_TIMER()) {
+//         return BOTAO_TIMER; 
+//     }
+//     else if (decodificarLEVANTA_PECA()) {
+//         return LEVANTA_PECA; 
+//     }
+//     else if (decodificarDEVOLVE_PECA()) {
+//         return DEVOLVE_PECA; 
+//     }
+//     else if (decodificarESCOLHE_CASA()) {
+//         return ESCOLHE_CASA; 
+//     }
+//     else if (decodificarESCOLHA_ILEGAL()) {
+//         return ESCOLHA_ILEGAL; 
+//     }
+//     else if (decodificarLEVANTA_PECA_ILEGAL()) {
+//         return LEVANTA_PECA_ILEGAL; 
+//     }
+//     else if (decodificarVITORIA_DERROTA()) {
+//         return VITORIA_DERROTA; 
+//     }
+//     else if (decodificarLEGAL_nULTIMO()) {
+//         return LEGAL_nULTIMO; 
+//     }
+//     else if (decodificarLEGAL_ULTIMO()) {
+//         return LEGAL_ULTIMO; 
+//     }
+//     else if (decodificarACABA_TEMPO()) {
+//         return ACABA_TEMPO; 
+//     }
+//     else if (decodificarLEFT_T()) {
+//         return LEFT_T; 
+//     }
+//     else if (decodificarLEFT_J()) {
+//         return LEFT_J; 
+//     }
+//     else if (decodificarLEFT_I()) {
+//         return LEFT_I; 
+//     }
+//     else if (decodificarLEFT_V()) {
+//         return LEFT_V; 
+//     }
+//     else if ((decodificarRIGHT() && (contador_vertical_fim == 0) && estado == FIM) || (analogRead(0) < 60 && contador_vertical_fim == 0 && estado == FIM)) {
+//         return RIGHT_JOGAR_NOVAMENTE; 
+//     }
+//     else if ((decodificarRIGHT() && (contador_vertical_fim == 1) && estado == FIM) || (analogRead(0) < 60 && contador_vertical_fim == 1 && estado == FIM)) {
+//         return RIGHT_MENU_PRINCIPAL; 
+//     }
+//     else {
+//         return NENHUM_EVENTO;
+//     }
+// }
 
 /*************************************
 ^^^^^^^^^^^^^^^^^^^
 SOMENTE PARA TESTES
 *************************************/
 
-/*********************************
+
 int obterEvento() {
-    if (analogRead(0) < 60) {
-        return RIGHT; 
+    if (Botao() == 1) {
+        return RIGHT_ESCOLHE_MODO; 
     }
-    else if (analogRead(0) < 200) {
+    else if (Botao() == 2) {
         return UP; 
     }
-    else if (analogRead(0) < 400) {
+    else if (Botao() == 3) {
         return DOWN; 
     }
-    else if (analogRead(0) < 600) {
+    else if (Botao() == 4) {
         return LEFT; 
     }
-    else if (peca_pronta(game)) {
+    else if ((estado == MODOS_DE_JOGO) && peca_pronta(game)) {
         return POSICIONAMENTO_DAS_PECAS; 
     }
-    else if (analogRead(0) < 800) {
+    else if (Botao() == 5) {
         return BOTAO_TIMER; 
     }
-    else if (peca_levantou(peca_levantada)) {
+    else if ((estado == TURNO) && peca_levantou()) {
         return LEVANTA_PECA; 
     }
     else if (1 == 0) {
         return DEVOLVE_PECA; 
     }
-    else if (1 == 0) {
+    else if ((estado == JOGADA) && peca_abaixou()) {
         return ESCOLHE_CASA; 
     }
     else if (1 == 0) {
@@ -288,7 +288,7 @@ int obterEvento() {
         return NENHUM_EVENTO;
     }
 }
-**********************************/
+
 
 
 
@@ -309,25 +309,40 @@ int executarAcao(int codigoAcao) {
     case A03:
         Serial.println("A03");
         lcd_menu_RIGHT_mdj();
+        inicial_cheese();
         break;
     case A04:
         Serial.println("A04");
+        apaga_todos_os_leds();
         lcd_menu_principal();
         break;
     case A05:
+        lcd.clear();
+        apaga_todos_os_leds();
+        delay(500);
+        acende_todos_os_leds();
+        delay(500);
+        apaga_todos_os_leds();
         Serial.println("A05");
         break;
     case A06:
         Serial.println("A06");
+        lcd.print("Boa partida");
+        lcd.setCursor(0,1);
+        jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
         break;
     case A07:
         Serial.println("A07");
+        acende_possiveis_jogadas();
         break;
     case A08:
         Serial.println("A08");
         break;
     case A09:
         Serial.println("A09");
+        apaga_todos_os_leds();
+        delay(100);
+        return verifica_jogada();
         break;
     case A10:
         Serial.println("A10");
