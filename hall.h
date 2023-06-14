@@ -1,11 +1,6 @@
 #ifndef HALL_H_INCLUDED
 #define HALL_H_INCLUDED
 
-typedef struct {
-    int x;
-    int y;
-} Move;
-
 void le_sensores();
 void inicializa_pinos();
 

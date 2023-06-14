@@ -221,7 +221,7 @@ SOMENTE PARA TESTES
 
 
 int obterEvento() {
-    if (Botao() == 1) {
+    if (Botao() == 1 && (estado == IDLE)) {
         return RIGHT_ESCOLHE_MODO; 
     }
     else if (Botao() == 2) {
@@ -251,7 +251,7 @@ int obterEvento() {
     else if (1 == 0) {
         return ESCOLHA_ILEGAL; 
     }
-    else if (1 == 0) {
+    else if ((estado == ILEGAL) && trata_peca_ilegal() ) {
         return LEVANTA_PECA_ILEGAL; 
     }
     else if (1 == 0) {
@@ -278,10 +278,10 @@ int obterEvento() {
     else if (1 == 0) {
         return LEFT_V; 
     }
-    else if (1 == 0) {
+    else if ((Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
         return RIGHT_JOGAR_NOVAMENTE; 
     }
-    else if (1 == 0) {
+    else if ((Botao() == 1 && contador_vertical_fim == 1 && estado == FIM)) {
         return RIGHT_MENU_PRINCIPAL; 
     }
     else {
@@ -330,6 +330,9 @@ int executarAcao(int codigoAcao) {
         lcd.print("Boa partida");
         lcd.setCursor(0,1);
         jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
+        acha_ratos_marrons();
+        acha_ratos_brancos();
+        animacao_vez_do_jogador();
         break;
     case A07:
         Serial.println("A07");
@@ -346,6 +349,7 @@ int executarAcao(int codigoAcao) {
         break;
     case A10:
         Serial.println("A10");
+        trata_peca_ilegal();
         break;
     case A11:
         Serial.println("A11");
@@ -355,9 +359,11 @@ int executarAcao(int codigoAcao) {
         break;
     case A13:
         Serial.println("A13");
+        animacao_vez_do_jogador();
         break;
     case A14:
         Serial.println("A14");
+        animacao_vez_do_jogador();
         break;
     case A15:
         Serial.println("A15");
@@ -374,10 +380,13 @@ int executarAcao(int codigoAcao) {
     case A19:
         Serial.println("A19");
         lcd_menu_RIGHT_fim();
+        reinicia_tabuleiro_cheese();
+        inicial_cheese();
         break;
     case A20:
         Serial.println("A20");
         lcd_menu_RIGHT_fim();
+        reinicia_tabuleiro_cheese();
         break;
     }
 

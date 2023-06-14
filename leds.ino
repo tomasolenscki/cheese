@@ -166,3 +166,167 @@ void acende_possiveis_jogadas(){
   FastLED.show();
 
 }
+
+void acende_casas_ilegais(){
+
+  int x = peca_levantada.x;
+  int y = peca_levantada.y;
+  switch (x){
+    case (0):
+      leds0[y] = CRGB(100, 0, 0);
+    break;
+    case (1):
+      leds1[y] = CRGB(100, 0, 0);
+    break;
+    case (2):
+      leds2[y] = CRGB(100, 0, 0);
+    break;
+    case (3):
+      leds3[y] = CRGB(100, 0, 0);
+    break;
+    case (4):
+      leds4[y] = CRGB(100, 0, 0);
+    break;
+  }
+
+  x = casa_escolhida.x;
+  y = casa_escolhida.y;
+  switch (x){
+    case (0):
+      leds0[y] = CRGB(200, 0, 0);
+    break;
+    case (1):
+      leds1[y] = CRGB(200, 0, 0);
+    break;
+    case (2):
+      leds2[y] = CRGB(200, 0, 0);
+    break;
+    case (3):
+      leds3[y] = CRGB(200, 0, 0);
+    break;
+    case (4):
+      leds4[y] = CRGB(200, 0, 0);
+    break;
+  }
+
+  FastLED.show();
+
+}
+
+void animacao_vez_do_jogador(){
+  int x, y;
+  // Serial.println("neutron?");
+  // Serial.println(neutron);
+  if (neutron) {
+    x = pos_cheese.x;
+    y = pos_cheese.y;
+    // Serial.println("pos neutron");
+    // Serial.println(x);
+    // Serial.println(y); 
+    if (jogador_da_vez == 1){
+      apaga_todos_os_leds();
+      switch (x){
+        case (0):
+          leds0[y] = CRGB(92,51,23);
+        break;
+        case (1):
+          leds1[y] = CRGB(92,51,23);
+        break;
+        case (2):
+          leds2[y] = CRGB(92,51,23);
+        break;
+        case (3):
+          leds3[y] = CRGB(92,51,23);
+        break;
+        case (4):
+          leds4[y] = CRGB(92,51,23);
+        break;
+      }
+      FastLED.show();
+      delay(1000);
+      apaga_todos_os_leds();
+
+    }
+    else {
+      switch (x){
+        case (0):
+          leds0[y] = CRGB(100, 100, 100);
+        break;
+        case (1):
+          leds1[y] = CRGB(100, 100, 100);
+        break;
+        case (2):
+          leds2[y] = CRGB(100, 100, 100);
+        break;
+        case (3):
+          leds3[y] = CRGB(100, 100, 100);
+        break;
+        case (4):
+          leds4[y] = CRGB(100, 100, 100);
+        break;
+      }
+      FastLED.show();
+      delay(1000);
+      apaga_todos_os_leds();
+    }
+  }
+
+  else{
+    if (jogador_da_vez == 1){
+      apaga_todos_os_leds();
+      for(int i=0; i<=4; i++){
+        x = pos_ratos_marrons[i].x;
+        y = pos_ratos_marrons[i].y;
+        switch (x){
+          case (0):
+            leds0[y] = CRGB(92,51,23);
+          break;
+          case (1):
+            leds1[y] = CRGB(92,51,23);
+          break;
+          case (2):
+            leds2[y] = CRGB(92,51,23);
+          break;
+          case (3):
+            leds3[y] = CRGB(92,51,23);
+          break;
+          case (4):
+            leds4[y] = CRGB(92,51,23);
+          break;
+        }
+      }
+      FastLED.show();
+      delay(1000);
+      apaga_todos_os_leds();
+    }
+
+    else {
+      apaga_todos_os_leds();
+      for(int i=0; i<=4; i++){
+        x = pos_ratos_brancos[i].x;
+        y = pos_ratos_brancos[i].y;
+        switch (x){
+          case (0):
+            leds0[y] = CRGB(100,100,100);
+          break;
+          case (1):
+            leds1[y] = CRGB(100,100,100);
+          break;
+          case (2):
+            leds2[y] = CRGB(100,100,100);
+          break;
+          case (3):
+            leds3[y] = CRGB(100,100,100);
+          break;
+          case (4):
+            leds4[y] = CRGB(100,100,100);
+          break;
+        }
+      }
+      FastLED.show();
+      delay(1000);
+      apaga_todos_os_leds();
+    }
+  }
+}
+

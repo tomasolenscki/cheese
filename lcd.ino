@@ -63,7 +63,10 @@ void lcd_menu_RIGHT_mdj(){
     switch (contador_vertical_mdj){
       case (0):
         game = CHEESE;
-      break;
+        break;
+      case (1):
+        game = CHEESE;
+        break;
       case (2):
         game = QUEENS;
       break;

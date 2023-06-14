@@ -19,12 +19,16 @@ void apaga_todos_os_leds(void);
 void acende_casa(int sensores[5][5]);
 void inicial_cheese();
 void acende_possiveis_jogadas();
+void acende_casas_ilegais();
+void animacao_vez_do_jogador();
 
 CRGB leds0[NUM_LEDS];
 CRGB leds1[NUM_LEDS];
 CRGB leds2[NUM_LEDS];
 CRGB leds3[NUM_LEDS];
 CRGB leds4[NUM_LEDS];
+
+CRGB rgb_marrom = CRGB(92,51,23);
 
 
 #endif // LEDS_H_INCLUDED

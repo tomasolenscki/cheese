@@ -67,6 +67,19 @@ bool peca_abaixou(){
   return false;
 }
 
+void reinicia_tabuleiro_cheese(){
+
+  for(int i=0; i<=4; i++){
+    for(int j=0; j<=4; j++){
+      tabuleiro_cheese[i][j] = tabuleiro_cheese_inicial[i][j];
+    }
+  }
+
+  neutron = false;
+  jogador_da_vez = 2;
+
+}
+
 int possible_moves() {
 
   int num_moves = 0;
@@ -99,22 +112,103 @@ int possible_moves() {
   return num_moves;
 }
 
+bool neutron_preso() {
+  acha_neutron();
+  int num_moves = 0;
+  int x = pos_cheese.x;
+  int y = pos_cheese.y;
+
+  for (int direction = 0; direction < 8; direction++) {
+    int new_x = x + dx[direction];
+    int new_y = y + dy[direction];
+
+    while (new_x >= 0 && new_x < 5 && new_y >= 0 && new_y < 5 && tabuleiro_cheese[new_x][new_y] == 0) {
+      new_x += dx[direction];
+      new_y += dy[direction];
+    }
+
+    // Revertendo a última iteração quando a peça atinge um obstáculo ou o limite do tabuleiro
+    new_x -= dx[direction];
+    new_y -= dy[direction];
+    
+    // Verificando se a nova posição é diferente da posição original
+    if (new_x != x || new_y != y) {
+        num_moves++;
+    }
+  }
+
+  Serial.println("neutron preso:");
+  Serial.println(num_moves);
+
+  delay(50);
+
+  return num_moves !=0 ? false : true;
+  
+}
+
 bool verifica_jogador_cheese(){
-  Serial.println("verificou_jogador");
+  // Serial.println("verificou_jogador");
   int x_inicio = peca_levantada.x;
   int y_inicio = peca_levantada.y;
-  Serial.println(x_inicio);
-  Serial.println(y_inicio);
-  Serial.println(tabuleiro_cheese[x_inicio][y_inicio]);
-  Serial.println(jogador_da_vez); 
+  // Serial.println(x_inicio);
+  // Serial.println(y_inicio);
+  // Serial.println(tabuleiro_cheese[x_inicio][y_inicio]);
+  // Serial.println(jogador_da_vez); 
   if (((tabuleiro_cheese[x_inicio][y_inicio] == jogador_da_vez) && (neutron == false)) || ((tabuleiro_cheese[x_inicio][y_inicio] == NEUTRON) && (neutron == true))){
     return true;
   }
   return false;
 }
 
+void acha_neutron(){
+
+  for(int i=0; i<=4; i++){
+    for(int j=0; j<=4; j++){
+      if (tabuleiro_cheese[i][j] == 3) {
+        pos_cheese.x = i;
+        pos_cheese.y = j;
+        break;
+      }
+    }
+  }
+}
+
+int acha_ratos_brancos(){
+  int cont = 0;
+  for(int i=0; i<=4; i++){
+    for(int j=0; j<=4; j++){
+      if (tabuleiro_cheese[i][j] == 2) {
+        pos_ratos_brancos[cont].x = i;
+        pos_ratos_brancos[cont].y = j;
+        cont++;
+        if (cont == 5){
+          return 0;
+        }
+      }
+    }
+  }
+  return 0;
+}
+
+int acha_ratos_marrons(){
+  int cont = 0;
+  for(int i=0; i<=4; i++){
+    for(int j=0; j<=4; j++){
+      if (tabuleiro_cheese[i][j] == 1) {
+        pos_ratos_marrons[cont].x = i;
+        pos_ratos_marrons[cont].y = j;
+        cont++;
+        if (cont == 5){
+          return 0;
+        }
+      }
+    }
+  }
+  return 0;
+}
+
 bool verifica_casa_escolhida(int x_fim, int y_fim){
-  Serial.println("verificou_casa");
+  // Serial.println("verificou_casa");
 
   bool esta_na_lista = false;
   int x, y;
@@ -152,26 +246,34 @@ int verifica_jogada(){
       return ESCOLHA_ILEGAL;
     }
 
-    if (neutron && ((x_fim == 0 )|| (x_fim==4))) {
+    if (neutron && ((x_fim == 0 ) || (x_fim==4))) {
       return VITORIA_DERROTA;
     }
 
     tabuleiro_cheese[x_inicio][y_inicio] = 0;
     tabuleiro_cheese[x_fim][y_fim] = neutron ? NEUTRON : jogador_da_vez;
 
-    if (jogador_da_vez == BLUE) {
-      jogador_da_vez = neutron ? GREEN : BLUE;
-    }
-    else if (jogador_da_vez == GREEN){
-      jogador_da_vez = neutron ? BLUE : GREEN;
+    if (neutron_preso()){
+      return VITORIA_DERROTA;
     }
 
-    Serial.println("Jogador_atual");
-    Serial.println(jogador_da_vez);
+    if (jogador_da_vez == BRANCO) {
+      jogador_da_vez = neutron ? BRANCO : MARROM;
+    }
+    else if (jogador_da_vez == MARROM){
+      jogador_da_vez = neutron ? MARROM : BRANCO;
+    }
+
+    // Serial.println("Jogador_atual");
+    // Serial.println(jogador_da_vez);
   
     neutron = !neutron;
-    Serial.println("neutron");
-    Serial.println(neutron);
+    // Serial.println("neutron");
+    // Serial.println(neutron);
+
+    acha_neutron();
+    acha_ratos_marrons();
+    acha_ratos_brancos();
 
     return neutron ? LEGAL_ULTIMO : LEGAL_nULTIMO ;
 
@@ -182,3 +284,26 @@ int verifica_jogada(){
   }
 
 }
+
+
+int trata_peca_ilegal(){
+
+  acende_casas_ilegais();
+
+  le_sensores();
+
+  for(int i=0; i<=4; i++){
+    for(int j=0; j<=4; j++){
+      if (tabuleiro_cheese[i][j] == 0){
+        if (sensores[i][j] != tabuleiro_cheese[i][j]){
+          return NENHUM_EVENTO;
+        }
+      }
+    }
+  }
+
+  return LEVANTA_PECA_ILEGAL;
+
+
+}
+
