@@ -1,5 +1,6 @@
 #include <FastLED.h>
 #include <LiquidCrystal.h>
+#include <SoftwareSerial.h>
 #include "maquina_estados.h"
 #include "leds.h"
 #include "hall.h"
@@ -7,15 +8,15 @@
 #include "botao.h"
 #include "jogo.h"
 #include "timer.h"
-#include "bt.h"
+// #include "bt.h"
 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
-
+// SoftwareSerial bt(18, 19); //Rx Tx
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-  bt.begin(9600);
+  // bt.begin(9600);
   lcd.begin(16,2);
   lcd.clear();
   Serial.println("Maquina de Estados iniciada");
@@ -67,14 +68,18 @@ void loop() {
 
   if (contando_tempo){
     desconta_tempo();
+    Serial.print("tempo_BRANCO");
+    Serial.println(tempo_BRANCO);
+    Serial.print("tempo_MARROM");
+    Serial.println(tempo_MARROM);    
     min_MARROM = (int)(tempo_MARROM/60000);
     seg_MARROM = (int)((tempo_MARROM%60000) / 1000 );
     min_BRANCO = (int)(tempo_BRANCO/60000);
     seg_BRANCO = (int)((tempo_BRANCO%60000) / 1000 );
     lcd.setCursor(0,0);
-    lcd.print("M: " + String(min_MARROM) + ":" + String(seg_MARROM));
+    lcd.print("M: " + String(padZero(min_MARROM)) + ":" + String(padZero(seg_MARROM)));
     lcd.setCursor(0,1);
-    lcd.print("B: " + String(min_BRANCO) + ":" + String(seg_BRANCO));
+    lcd.print("B: " + String(padZero(min_BRANCO)) + ":" + String(padZero(seg_BRANCO)));
   }
 
   delay(100);

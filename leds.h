@@ -21,6 +21,7 @@ void inicial_cheese();
 void acende_possiveis_jogadas();
 void acende_casas_ilegais();
 void animacao_vez_do_jogador();
+void animacao_inicio();
 
 CRGB leds0[NUM_LEDS];
 CRGB leds1[NUM_LEDS];

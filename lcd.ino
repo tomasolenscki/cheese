@@ -109,3 +109,33 @@ void lcd_menu_RIGHT_fim(){
     }
     
 }
+
+void lcd_vitoria_derrota(){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Fim de jogo");
+  lcd.setCursor(0,1);
+  if (jogador_vencedor == MARROM)
+    lcd.print("MARROM VENCEU");
+  else 
+    lcd.print("BRANCO VENCEU");
+}
+
+void lcd_acaba_tempo(){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Acabou o tempo");
+  lcd.setCursor(0,1);
+  if (jogador_vencedor == MARROM)
+    lcd.print("MARROM VENCEU");
+  else 
+    lcd.print("BRANCO VENCEU");
+}
+
+String padZero(int value) {
+  if (value < 10) {
+    return "0" + String(value);
+  } else {
+    return String(value);
+  }
+}

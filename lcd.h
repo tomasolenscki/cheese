@@ -15,5 +15,7 @@ void lcd_menu_UP();
 void lcd_menu_DOWN();
 void lcd_menu_RIGHT_mdj();
 void lcd_menu_RIGHT_fim();
+void lcd_acaba_tempo();
+void lcd_vitoria_derrota();
 
 #endif // LCD_H_INCLUDED

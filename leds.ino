@@ -330,3 +330,44 @@ void animacao_vez_do_jogador(){
   }
 }
 
+void animacao_inicio(){
+  int x, y;
+  leds2[2] = CRGB(0,100,100);
+  FastLED.show();
+  delay(700);
+  for(int i=1; i<=3; i++){
+    for(int j=1; j<=3; j++){
+      switch (i){
+        case (0):
+          leds0[j] = CRGB(0,100,100);
+        break;
+        case (1):
+          leds1[j] = CRGB(0,100,100);
+        break;
+        case (2):
+          leds2[j] = CRGB(0,100,100);
+        break;
+        case (3):
+          leds3[j] = CRGB(0,100,100);
+        break;
+        case (4):
+          leds4[j] = CRGB(0,100,100);
+        break;
+      }      
+    }
+  }
+  FastLED.show();
+  delay(700);
+  acende_todos_os_leds();
+  delay(700);
+  apaga_todos_os_leds();
+  delay(300);
+  acende_todos_os_leds();
+  delay(300);
+  apaga_todos_os_leds();
+  delay(300);
+  acende_todos_os_leds();
+  delay(1000);
+  apaga_todos_os_leds();
+}
+

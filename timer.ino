@@ -14,12 +14,12 @@ void desconta_tempo(){
 }
 
 bool acaba_tempo(){
-  if (tempo_MARROM <= 0){
-    // perdedor = MARROM;
+  if (tempo_MARROM == 0 || tempo_MARROM >= 6000000){
+    jogador_vencedor = BRANCO;
     contando_tempo = false;
     return true;
-  } else if (tempo_BRANCO <= 0){
-    // perdedor = BRANCO;
+  } else if (tempo_BRANCO == 0 || tempo_BRANCO >= 6000000){
+    jogador_vencedor = MARROM;
     contando_tempo = false;
     return true;
   }

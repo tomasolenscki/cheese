@@ -264,7 +264,7 @@ int obterEvento() {
     else if ((timer && (Botao()== 5)) && (estado == VERIFICACAO)) {
         return LEGAL_ULTIMO; 
     }
-    else if (acaba_tempo()) {
+    else if ((estado != FIM ) && acaba_tempo()) {
         return ACABA_TEMPO; 
     }
     else if (1 == 0) {
@@ -300,102 +300,108 @@ int executarAcao(int codigoAcao) {
     switch(codigoAcao)
     {
     case A01:
-        Serial.println("A01");
-        lcd_menu_UP();
-        break;
+      Serial.println("A01");
+      lcd_menu_UP();
+      break;
     case A02:
-        Serial.println("A02");
-        lcd_menu_DOWN();
-        break;
+      Serial.println("A02");
+      lcd_menu_DOWN();
+      break;
     case A03:
-        Serial.println("A03");
-        lcd_menu_RIGHT_mdj();
-        inicial_cheese();
-        break;
+      Serial.println("A03");
+      lcd_menu_RIGHT_mdj();
+      inicial_cheese();
+      break;
     case A04:
-        Serial.println("A04");
-        apaga_todos_os_leds();
-        lcd_menu_principal();
-        break;
+      Serial.println("A04");
+      apaga_todos_os_leds();
+      lcd_menu_principal();
+      break;
     case A05:
-        lcd.clear();
-        apaga_todos_os_leds();
-        delay(500);
-        acende_todos_os_leds();
-        delay(500);
-        apaga_todos_os_leds();
-        lcd.print("Boa partida");
-        lcd.setCursor(0,1);
-        jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
-        if (timer)
+      lcd.clear();
+      apaga_todos_os_leds();
+      animacao_inicio();
+      apaga_todos_os_leds();
+      lcd.print("Boa partida");
+      lcd.setCursor(0,1);
+      jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
+      if (timer){
         tempo_MARROM = TEMPO_POR_JOGADOR;
         tempo_BRANCO = TEMPO_POR_JOGADOR;
-        Serial.println("A05");
-        break;
+      }
+      Serial.println("A05");
+      break;
     case A06:
-        Serial.println("A06");
-        lcd.clear();
-        if (timer)
-          comeco_intervalo = millis();
-          contando_tempo = true;
-        acha_ratos_marrons();
-        acha_ratos_brancos();
-        animacao_vez_do_jogador();
-        break;
+      Serial.println("A06");
+      lcd.clear();
+      acha_ratos_marrons();
+      acha_ratos_brancos();
+      animacao_vez_do_jogador();
+      if (timer){
+        comeco_intervalo = millis();
+        contando_tempo = true;
+      }
+      break;
     case A07:
-        Serial.println("A07");
-        acende_possiveis_jogadas();
-        break;
+      Serial.println("A07");
+      acende_possiveis_jogadas();
+      break;
     case A08:
-        Serial.println("A08");
-        break;
+      Serial.println("A08");
+      break;
     case A09:
-        Serial.println("A09");
-        apaga_todos_os_leds();
-        delay(100);
-        return verifica_jogada();
-        break;
+      Serial.println("A09");
+      apaga_todos_os_leds();
+      delay(100);
+      return verifica_jogada();
+      break;
     case A10:
-        Serial.println("A10");
-        trata_peca_ilegal();
-        break;
+      Serial.println("A10");
+      trata_peca_ilegal();
+      break;
     case A11:
-        Serial.println("A11");
-        break;
+      Serial.println("A11");
+      break;
     case A12:
-        Serial.println("A12");
-        break;
+      lcd_vitoria_derrota();
+      tempo_MARROM = TEMPO_POR_JOGADOR;
+      tempo_BRANCO = TEMPO_POR_JOGADOR;
+      Serial.println("A12");
+      break;
     case A13:
-        Serial.println("A13");
-        animacao_vez_do_jogador();
-        break;
+      Serial.println("A13");
+      animacao_vez_do_jogador();
+      break;
     case A14:
-        Serial.println("A14");
-        animacao_vez_do_jogador();
-        break;
+      Serial.println("A14");
+      animacao_vez_do_jogador();
+      break;
     case A15:
-        Serial.println("A15");
-        break;
+      lcd_acaba_tempo();
+      tempo_MARROM = TEMPO_POR_JOGADOR;
+      tempo_BRANCO = TEMPO_POR_JOGADOR;
+      Serial.println("A15");
+      break;
     case A16:
-        Serial.println("A16");
-        break;
+      Serial.println("A16");
+      break;
     case A17:
-        Serial.println("A17");
-        break;
+      Serial.println("A17");
+      break;
     case A18:
-        Serial.println("A18");
-        break;
+      Serial.println("A18");
+      break;
     case A19:
-        Serial.println("A19");
-        lcd_menu_RIGHT_fim();
-        reinicia_tabuleiro_cheese();
-        inicial_cheese();
-        break;
+      Serial.println("A19");
+      lcd_menu_RIGHT_fim();
+      reinicia_tabuleiro_cheese();
+      inicial_cheese();
+      break;
     case A20:
-        Serial.println("A20");
-        lcd_menu_RIGHT_fim();
-        reinicia_tabuleiro_cheese();
-        break;
+      Serial.println("A20");
+      lcd_menu_RIGHT_fim();
+      reinicia_tabuleiro_cheese();
+      break;
     }
 
     return NENHUM_EVENTO;
