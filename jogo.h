@@ -1,3 +1,6 @@
+#ifndef JOGO_H_INCLUDED
+#define JOGO_H_INCLUDED
+
 #define MARROM 1
 #define BRANCO 2
 #define NEUTRON 3
@@ -70,5 +73,7 @@ void acha_neutron();
 bool neutron_preso();
 int acha_ratos_marrons();
 int acha_ratos_brancos();
+
+#endif // JOGO_H_INCLUDED
 
 

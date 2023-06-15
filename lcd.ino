@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include "lcd.h"
 #include "maquina_estados.h"
+#include "timer.h"
+#include "jogo.h"
 
 void lcd_menu_principal(){
   lcd.clear();
@@ -63,12 +65,19 @@ void lcd_menu_RIGHT_mdj(){
     switch (contador_vertical_mdj){
       case (0):
         game = CHEESE;
-        break;
+        timer = false;
+      break;
       case (1):
         game = CHEESE;
-        break;
+        timer = true;
+      break;
       case (2):
         game = QUEENS;
+        timer = false;
+      break;
+      case (3):
+        game = QUEENS;
+        timer = true;
       break;
     }
     Serial.print("LCD: Opc escolhida: ");

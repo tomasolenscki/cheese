@@ -3,6 +3,7 @@
 #include "hall.h"
 #include "leds.h"
 #include "lcd.h"
+#include "timer.h"
 
 int obterAcao(int estado, int codigoEvento) {
   return acao_matrizTransicaoEstados[estado][codigoEvento];
@@ -260,10 +261,10 @@ int obterEvento() {
     else if (1 == 0) {
         return LEGAL_nULTIMO; 
     }
-    else if (1 == 0) {
+    else if ((timer && (Botao()== 5)) && (estado == VERIFICACAO)) {
         return LEGAL_ULTIMO; 
     }
-    else if (1 == 0) {
+    else if (acaba_tempo()) {
         return ACABA_TEMPO; 
     }
     else if (1 == 0) {
@@ -323,13 +324,20 @@ int executarAcao(int codigoAcao) {
         acende_todos_os_leds();
         delay(500);
         apaga_todos_os_leds();
+        lcd.print("Boa partida");
+        lcd.setCursor(0,1);
+        jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
+        if (timer)
+        tempo_MARROM = TEMPO_POR_JOGADOR;
+        tempo_BRANCO = TEMPO_POR_JOGADOR;
         Serial.println("A05");
         break;
     case A06:
         Serial.println("A06");
-        lcd.print("Boa partida");
-        lcd.setCursor(0,1);
-        jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
+        lcd.clear();
+        if (timer)
+          comeco_intervalo = millis();
+          contando_tempo = true;
         acha_ratos_marrons();
         acha_ratos_brancos();
         animacao_vez_do_jogador();

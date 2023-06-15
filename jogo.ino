@@ -1,5 +1,7 @@
 #include <Arduino.h>
+#include "jogo.h"
 #include "maquina_estados.h"
+#include "timer.h"
 
 bool peca_pronta(int game){
 
@@ -247,6 +249,8 @@ int verifica_jogada(){
     }
 
     if (neutron && ((x_fim == 0 ) || (x_fim==4))) {
+      contando_tempo = false;
+      jogador_vencedor = (x_fim == 0 ) ? MARROM : BRANCO;
       return VITORIA_DERROTA;
     }
 
@@ -254,6 +258,8 @@ int verifica_jogada(){
     tabuleiro_cheese[x_fim][y_fim] = neutron ? NEUTRON : jogador_da_vez;
 
     if (neutron_preso()){
+      contando_tempo = false;
+      jogador_vencedor = jogador_da_vez;
       return VITORIA_DERROTA;
     }
 
@@ -275,7 +281,15 @@ int verifica_jogada(){
     acha_ratos_marrons();
     acha_ratos_brancos();
 
-    return neutron ? LEGAL_ULTIMO : LEGAL_nULTIMO ;
+    // if (neutron && !timer){
+    //   return LEGAL_ULTIMO;
+    // } else if (neutron && timer){
+    //   return VERIFICACAO; // ainda tem que esperar o botao timer
+    // } else if (!neutron){
+    //   return LEGAL_nULTIMO;
+    // }
+
+  return neutron ? LEGAL_ULTIMO : LEGAL_nULTIMO ;
 
   }
 

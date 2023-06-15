@@ -6,6 +6,8 @@
 #include "lcd.h"
 #include "botao.h"
 #include "jogo.h"
+#include "timer.h"
+#include "bt.h"
 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
@@ -13,6 +15,7 @@ LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
+  bt.begin(9600);
   lcd.begin(16,2);
   lcd.clear();
   Serial.println("Maquina de Estados iniciada");
@@ -61,5 +64,18 @@ void loop() {
     Serial.print(" Acao: ");
     Serial.println(codigoAcao);
   }
+
+  if (contando_tempo){
+    desconta_tempo();
+    min_MARROM = (int)(tempo_MARROM/60000);
+    seg_MARROM = (int)((tempo_MARROM%60000) / 1000 );
+    min_BRANCO = (int)(tempo_BRANCO/60000);
+    seg_BRANCO = (int)((tempo_BRANCO%60000) / 1000 );
+    lcd.setCursor(0,0);
+    lcd.print("M: " + String(min_MARROM) + ":" + String(seg_MARROM));
+    lcd.setCursor(0,1);
+    lcd.print("B: " + String(min_BRANCO) + ":" + String(seg_BRANCO));
+  }
+
   delay(100);
 }
