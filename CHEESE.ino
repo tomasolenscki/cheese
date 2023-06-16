@@ -10,6 +10,14 @@
 #include "timer.h"
 // #include "bt.h"
 
+/*
+  CHEESE
+  GUILHERME RODRIGUES MONTEIRO - 10706103
+  JOAO RODRIGO WINDISCH OLENSCKI - 10773224
+  LUCA RODRIGUES MIGUEL - 10705655
+  LUI DAMIANCI FERREIRA - 10770579
+*/
+
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 // SoftwareSerial bt(18, 19); //Rx Tx
 
