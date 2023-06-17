@@ -67,6 +67,7 @@ int eventoInterno = NENHUM_EVENTO;
 int codigoEvento = NENHUM_EVENTO;
 int codigoAcao;
 int estado = IDLE;
+int estadoSalvo;
 
 // int obterEvento();
 int obterAcao(int estado, int codigoEvento);

@@ -3,6 +3,25 @@
 #include "maquina_estados.h"
 #include "timer.h"
 
+void preenche_cor(int jogador){
+  
+  if (jogador == MARROM){
+   for(int i=0; i<=4; i++){
+      for(int j=0; j<=4; j++){
+        tabuleiro_cheese[i][j] = MARROM;
+      }
+    }
+  }
+
+  if (jogador == BRANCO){
+   for(int i=0; i<=4; i++){
+      for(int j=0; j<=4; j++){
+        tabuleiro_cheese[i][j] = BRANCO;
+      }
+    }
+  }
+}
+
 bool peca_pronta(int game){
 
   le_sensores();
@@ -138,9 +157,6 @@ bool neutron_preso() {
         num_moves++;
     }
   }
-
-  Serial.println("neutron preso:");
-  Serial.println(num_moves);
 
   delay(50);
 

@@ -42,7 +42,6 @@ void setup() {
   lcd.clear();
   delay(2000);
   Serial.println("Maquina de Estados iniciada");
-  lcd.print("Escolha o modo: ");
   // make the pushbutton's pin an input:
 
 

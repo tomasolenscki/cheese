@@ -73,6 +73,7 @@ void acha_neutron();
 bool neutron_preso();
 int acha_ratos_marrons();
 int acha_ratos_brancos();
+void preenche_cor(int jogador);
 
 #endif // JOGO_H_INCLUDED
 

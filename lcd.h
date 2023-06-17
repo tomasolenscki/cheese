@@ -4,7 +4,7 @@
 void lcd_menu_principal();
 
 String modo_de_jogo;
-String opcoes_menu_mdj[] = {{"cheese"},{"cheese_t"},{"queens"},{"queens_t"}};
+String opcoes_menu_mdj[] = {{"cheese"},{"cheese_5"},{"cheese_10"},{"cheese_15"}};
 int contador_vertical_mdj = 0;
 
 String selecao_fim;

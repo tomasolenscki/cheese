@@ -36,13 +36,18 @@ void taskObterEvento() {
     if (Botao() == 1 && (estado == IDLE)) {
         codigoEvento = RIGHT_ESCOLHE_MODO;
     }
+
+    else if (Botao() == 1 && (estado == EMPATE)) {
+      codigoEvento = RIGHT_ESCOLHE_MODO;
+    }
+
     else if (Botao() == 2) {
         codigoEvento = UP;
     }
     else if (Botao() == 3) {
         codigoEvento = DOWN; 
     }
-    else if (Botao() == 4) {
+    else if ((Botao() == 4 && ((estado == MODOS_DE_JOGO) || (estado == TURNO) || (estado == JOGADA) || (estado == VERIFICACAO) || (estado == ILEGAL) ))) {
         codigoEvento = LEFT; 
     }
     else if ((estado == MODOS_DE_JOGO) && peca_pronta(game)) {
@@ -54,40 +59,28 @@ void taskObterEvento() {
     else if ((estado == TURNO) && peca_levantou()) {
         codigoEvento = LEVANTA_PECA; 
     }
-    else if (1 == 0) {
-        codigoEvento = DEVOLVE_PECA; 
-    }
+
     else if ((estado == JOGADA) && peca_abaixou()) {
         codigoEvento = ESCOLHE_CASA; 
     }
-    else if (1 == 0) {
-        codigoEvento = ESCOLHA_ILEGAL; 
-    }
+
     else if ((estado == ILEGAL) && trata_peca_ilegal() ) {
         codigoEvento = LEVANTA_PECA_ILEGAL; 
     }
-    else if (1 == 0) {
-        codigoEvento = VITORIA_DERROTA; 
-    }
-    else if (1 == 0) {
-        codigoEvento = LEGAL_nULTIMO; 
-    }
-    else if ((timer && (Botao()== 5)) && (estado == VERIFICACAO)) {
-        codigoEvento = LEGAL_ULTIMO; 
-    }
+
     else if ((estado != FIM ) && acaba_tempo()) {
         codigoEvento = ACABA_TEMPO; 
     }
-    else if (1 == 0) {
+    else if ((estadoSalvo == TURNO) && (Botao() == 4 )) {
         codigoEvento = LEFT_T; 
     }
-    else if (1 == 0) {
+    else if ((estadoSalvo == JOGADA) && (Botao() == 4 )) {
         codigoEvento = LEFT_J; 
     }
-    else if (1 == 0) {
+    else if ((estadoSalvo == ILEGAL) && (Botao() == 4 )) {
         codigoEvento = LEFT_I; 
     }
-    else if (1 == 0) {
+    else if ((estadoSalvo == VERIFICACAO) && (Botao() == 4 )) {
         codigoEvento = LEFT_V; 
     }
     else if ((Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
@@ -119,6 +112,7 @@ int executarAcao(int codigoAcao) {
     case A03:
       Serial.println("A03");
       lcd_menu_RIGHT_mdj();
+      reinicia_tabuleiro_cheese();
       inicial_cheese();
       break;
     case A04:
@@ -146,6 +140,7 @@ int executarAcao(int codigoAcao) {
       acha_ratos_marrons();
       acha_ratos_brancos();
       animacao_vez_do_jogador();
+      estadoSalvo = estado;
       if (timer){
         comeco_intervalo = millis();
         contando_tempo = true;
@@ -153,25 +148,31 @@ int executarAcao(int codigoAcao) {
       break;
     case A07:
       Serial.println("A07");
+      estadoSalvo = estado;
       acende_possiveis_jogadas();
       break;
     case A08:
       Serial.println("A08");
+      estadoSalvo = estado;
       break;
     case A09:
       Serial.println("A09");
+      estadoSalvo = estado;
       apaga_todos_os_leds();
       delay(100);
       return verifica_jogada();
       break;
     case A10:
       Serial.println("A10");
+      estadoSalvo = estado;
       trata_peca_ilegal();
       break;
     case A11:
       Serial.println("A11");
+      estadoSalvo = estado;
       break;
     case A12:
+      preenche_cor(jogador_vencedor);
       lcd_vitoria_derrota();
       animacao_vencedor();
       tempo_MARROM = TEMPO_POR_JOGADOR;
@@ -180,26 +181,36 @@ int executarAcao(int codigoAcao) {
       break;
     case A13:
       Serial.println("A13");
+      estadoSalvo = estado;
       animacao_vez_do_jogador();
+      
       break;
     case A14:
       Serial.println("A14");
+      estadoSalvo = estado;
       animacao_vez_do_jogador();
       break;
     case A15:
       lcd_acaba_tempo();
+      preenche_cor(jogador_vencedor);
       tempo_MARROM = TEMPO_POR_JOGADOR;
       tempo_BRANCO = TEMPO_POR_JOGADOR;
       Serial.println("A15");
       break;
     case A16:
+      lcd_empate();
       Serial.println("A16");
       break;
     case A17:
       Serial.println("A17");
+      preenche_cor(3);
+      contador_vertical_fim = 0;
+      lcd_menu_RIGHT_fim();
+      reinicia_tabuleiro_cheese();
       break;
     case A18:
       Serial.println("A18");
+      lcd.clear();
       break;
     case A19:
       Serial.println("A19");
@@ -209,6 +220,7 @@ int executarAcao(int codigoAcao) {
       break;
     case A20:
       Serial.println("A20");
+      contador_vertical_fim = 0;
       lcd_menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
       break;

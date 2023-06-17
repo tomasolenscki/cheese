@@ -16,7 +16,7 @@ void lcd_menu_UP(){
             contador_vertical_mdj = 3;
         else 
             contador_vertical_mdj -= 1;
-        delay(300);
+        delay(200);
         Serial.print("LCD: modo pre-selecionado: ");
         Serial.println(opcoes_menu_mdj[contador_vertical_mdj]);
         lcd.clear();
@@ -27,7 +27,7 @@ void lcd_menu_UP(){
             contador_vertical_fim = 1;
         else 
             contador_vertical_fim -= 1;
-        delay(300);
+        delay(200);
         Serial.print("LCD: pre-selecao no fim: ");
         Serial.println(opcoes_menu_fim[contador_vertical_fim]);
         lcd.clear();
@@ -92,9 +92,6 @@ void lcd_menu_RIGHT_mdj(){
 
 void lcd_menu_RIGHT_fim(){
     if (contador_vertical_fim == 0) {
-        Serial.print("LCD: Opc escolhida: ");
-        Serial.println(opcoes_menu_mdj[contador_vertical_mdj]);
-        Serial.println("LCD: Posicione as pecas");
         lcd.clear();
         lcd.setCursor(0,0);
         lcd.print(String("Escolhido: ") + String(opcoes_menu_mdj[contador_vertical_mdj]));
@@ -103,7 +100,6 @@ void lcd_menu_RIGHT_fim(){
 
     }
     else {
-        Serial.println("LCD: Menu Principal");
         lcd.clear();
         lcd.print("Menu Principal:");
     }
@@ -112,7 +108,6 @@ void lcd_menu_RIGHT_fim(){
 
 void lcd_vitoria_derrota(){
   lcd.clear();
-  lcd.setCursor(0,0);
   lcd.print("Fim de jogo");
   lcd.setCursor(0,1);
   if (jogador_vencedor == MARROM)
@@ -123,13 +118,18 @@ void lcd_vitoria_derrota(){
 
 void lcd_acaba_tempo(){
   lcd.clear();
-  lcd.setCursor(0,0);
   lcd.print("Acabou o tempo");
   lcd.setCursor(0,1);
   if (jogador_vencedor == MARROM)
     lcd.print("MARROM VENCEU");
   else 
     lcd.print("BRANCO VENCEU");
+}
+
+void lcd_empate(){
+  lcd.clear();
+  lcd.print("Empate?");
+
 }
 
 String padZero(int value) {

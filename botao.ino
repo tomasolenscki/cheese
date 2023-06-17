@@ -27,7 +27,7 @@ int Botao(){
   button = getButton();
   if (button != old_button)
   {
-      delay(150);        // debounce
+      delay(200);        // debounce
       button2 = getButton();
 
       if (button == button2)
