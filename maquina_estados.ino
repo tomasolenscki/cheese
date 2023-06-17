@@ -13,284 +13,93 @@ int obterProximoEstado(int estado, int codigoEvento) {
   return proximo_estado_matrizTransicaoEstados[estado][codigoEvento];
 }
 
-/*************************************
-SOMENTE PARA TESTES
-vvvvvvvvvvvvvvvvvvv
-*************************************/
-// char buf[10];
-// char* ihm_obterTeclas()
-// {
-//     int read_count = 0;
-    
-//     // confere inputs
-//     if (Serial.available() > 0) {
-//       // le bytes de entrada
-//       read_count = Serial.readBytesUntil('\n', buf, sizeof(buf)/sizeof(buf[0]) - 1);
-//     }
-
-//     buf[read_count] = '\0';
-//     if(read_count > 0) {
-//       //Serial.println(buf);
-//     }
-//     return buf;
-// }
-
-// char* teclas;
-
-// int decodificarRIGHT(){
-//     if (teclas[0] == 'R' && teclas[1] == '\0')
-//         return true;
-//     return false;
-// }
-// int decodificarUP(){
-//     if (teclas[0] == 'U' && teclas[1] == '\0')
-//         return true;
-//     return false;
-// }
-// int decodificarDOWN(){
-//     if (teclas[0] == 'D' && teclas[1] == '\0')
-//         return true;
-//     return false;
-// }
-// int decodificarLEFT(){
-//     if (teclas[0] == 'L' && teclas[1] == '\0')
-//         return true;
-//     return false;
-// }
-// int decodificarPOSICIONAMENTO_DAS_PECAS(){
-//     if (teclas[0] == 'P' && teclas[1] == 'D' && teclas[2] == 'P')
-//         return true;
-//     return false;
-// }
-// int decodificarBOTAO_TIMER(){
-//     if (teclas[0] == 'B' && teclas[1] == 'T')
-//         return true;
-//     return false;
-// }
-// int decodificarLEVANTA_PECA(){
-//     if (teclas[0] == 'L' && teclas[1] == 'P' && teclas[2] == '\0')
-//         return true;
-//     return false;
-// }
-// int decodificarDEVOLVE_PECA(){
-//     if (teclas[0] == 'D' && teclas[1] == 'P')
-//         return true;
-//     return false;
-// }
-// int decodificarESCOLHE_CASA(){
-//     if (teclas[0] == 'E' && teclas[1] == 'C')
-//         return true;
-//     return false;
-// }
-// int decodificarESCOLHA_ILEGAL(){
-//     if (teclas[0] == 'E' && teclas[1] == 'I')
-//         return true;
-//     return false;
-// }
-// int decodificarLEVANTA_PECA_ILEGAL(){
-//     if (teclas[0] == 'L' && teclas[1] == 'P' && teclas[2] == 'I')
-//         return true;
-//     return false;
-// }
-// int decodificarVITORIA_DERROTA(){
-//     if (teclas[0] == 'V' && teclas[1] == 'D')
-//         return true;
-//     return false;
-// }
-// int decodificarLEGAL_nULTIMO(){
-//     if (teclas[0] == 'L' && teclas[1] == 'n' && teclas[2] == 'U')
-//         return true;
-//     return false;
-// }
-// int decodificarLEGAL_ULTIMO(){
-//     if (teclas[0] == 'L' && teclas[1] == 'U')
-//         return true;
-//     return false;
-// }
-// int decodificarACABA_TEMPO(){
-//     if (teclas[0] == 'A' && teclas[1] == 'T')
-//         return true;
-//     return false;
-// }
-// int decodificarLEFT_T(){
-//     if (teclas[0] == 'L' && teclas[1] == 'T')
-//         return true;
-//     return false;
-// }
-// int decodificarLEFT_J(){
-//     if (teclas[0] == 'L' && teclas[1] == 'J')
-//         return true;
-//     return false;
-// }
-// int decodificarLEFT_I(){
-//     if (teclas[0] == 'L' && teclas[1] == 'I')
-//         return true;
-//     return false;
-// }
-// int decodificarLEFT_V(){
-//     if (teclas[0] == 'L' && teclas[1] == 'V')
-//         return true;
-//     return false;
-// }
-// int decodificarRIGHT_JOGAR_NOVAMENTE(){
-//     if (teclas[0] == 'R' && teclas[1] == 'J' && teclas[2] == 'N')
-//         return true;
-//     return false;
-// }
-// int decodificarRIGHT_MENU_PRINCIPAL(){
-//     if (teclas[0] == 'R' && teclas[1] == 'M' && teclas[2] == 'P')
-//         return true;
-//     return false;
-// }
-
-
-// int obterEvento() {
-//     teclas = ihm_obterTeclas();
-
-//     if ((decodificarRIGHT() && estado == IDLE) || (analogRead(0) < 60 && estado == IDLE)) {
-//         return RIGHT_ESCOLHE_MODO; 
-//     }
-//     else if (decodificarUP()) {
-//         return UP; 
-//     }
-//     else if (decodificarDOWN()) {
-//         return DOWN; 
-//     }
-//     else if (decodificarLEFT()) {
-//         return LEFT; 
-//     }
-//     else if (decodificarPOSICIONAMENTO_DAS_PECAS()) {
-//         return POSICIONAMENTO_DAS_PECAS; 
-//     }
-//     else if (decodificarBOTAO_TIMER()) {
-//         return BOTAO_TIMER; 
-//     }
-//     else if (decodificarLEVANTA_PECA()) {
-//         return LEVANTA_PECA; 
-//     }
-//     else if (decodificarDEVOLVE_PECA()) {
-//         return DEVOLVE_PECA; 
-//     }
-//     else if (decodificarESCOLHE_CASA()) {
-//         return ESCOLHE_CASA; 
-//     }
-//     else if (decodificarESCOLHA_ILEGAL()) {
-//         return ESCOLHA_ILEGAL; 
-//     }
-//     else if (decodificarLEVANTA_PECA_ILEGAL()) {
-//         return LEVANTA_PECA_ILEGAL; 
-//     }
-//     else if (decodificarVITORIA_DERROTA()) {
-//         return VITORIA_DERROTA; 
-//     }
-//     else if (decodificarLEGAL_nULTIMO()) {
-//         return LEGAL_nULTIMO; 
-//     }
-//     else if (decodificarLEGAL_ULTIMO()) {
-//         return LEGAL_ULTIMO; 
-//     }
-//     else if (decodificarACABA_TEMPO()) {
-//         return ACABA_TEMPO; 
-//     }
-//     else if (decodificarLEFT_T()) {
-//         return LEFT_T; 
-//     }
-//     else if (decodificarLEFT_J()) {
-//         return LEFT_J; 
-//     }
-//     else if (decodificarLEFT_I()) {
-//         return LEFT_I; 
-//     }
-//     else if (decodificarLEFT_V()) {
-//         return LEFT_V; 
-//     }
-//     else if ((decodificarRIGHT() && (contador_vertical_fim == 0) && estado == FIM) || (analogRead(0) < 60 && contador_vertical_fim == 0 && estado == FIM)) {
-//         return RIGHT_JOGAR_NOVAMENTE; 
-//     }
-//     else if ((decodificarRIGHT() && (contador_vertical_fim == 1) && estado == FIM) || (analogRead(0) < 60 && contador_vertical_fim == 1 && estado == FIM)) {
-//         return RIGHT_MENU_PRINCIPAL; 
-//     }
-//     else {
-//         return NENHUM_EVENTO;
-//     }
-// }
-
-/*************************************
-^^^^^^^^^^^^^^^^^^^
-SOMENTE PARA TESTES
-*************************************/
-
-
-int obterEvento() {
-    if (Botao() == 1 && (estado == IDLE)) {
-        return RIGHT_ESCOLHE_MODO; 
-    }
-    else if (Botao() == 2) {
-        return UP; 
-    }
-    else if (Botao() == 3) {
-        return DOWN; 
-    }
-    else if (Botao() == 4) {
-        return LEFT; 
-    }
-    else if ((estado == MODOS_DE_JOGO) && peca_pronta(game)) {
-        return POSICIONAMENTO_DAS_PECAS; 
-    }
-    else if (Botao() == 5) {
-        return BOTAO_TIMER; 
-    }
-    else if ((estado == TURNO) && peca_levantou()) {
-        return LEVANTA_PECA; 
-    }
-    else if (1 == 0) {
-        return DEVOLVE_PECA; 
-    }
-    else if ((estado == JOGADA) && peca_abaixou()) {
-        return ESCOLHE_CASA; 
-    }
-    else if (1 == 0) {
-        return ESCOLHA_ILEGAL; 
-    }
-    else if ((estado == ILEGAL) && trata_peca_ilegal() ) {
-        return LEVANTA_PECA_ILEGAL; 
-    }
-    else if (1 == 0) {
-        return VITORIA_DERROTA; 
-    }
-    else if (1 == 0) {
-        return LEGAL_nULTIMO; 
-    }
-    else if ((timer && (Botao()== 5)) && (estado == VERIFICACAO)) {
-        return LEGAL_ULTIMO; 
-    }
-    else if ((estado != FIM ) && acaba_tempo()) {
-        return ACABA_TEMPO; 
-    }
-    else if (1 == 0) {
-        return LEFT_T; 
-    }
-    else if (1 == 0) {
-        return LEFT_J; 
-    }
-    else if (1 == 0) {
-        return LEFT_I; 
-    }
-    else if (1 == 0) {
-        return LEFT_V; 
-    }
-    else if ((Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
-        return RIGHT_JOGAR_NOVAMENTE; 
-    }
-    else if ((Botao() == 1 && contador_vertical_fim == 1 && estado == FIM)) {
-        return RIGHT_MENU_PRINCIPAL; 
-    }
-    else {
-        return NENHUM_EVENTO;
-    }
+void taskMaqEstados() {
+  if (eventoInterno != NENHUM_EVENTO) {
+      codigoEvento = eventoInterno;
+  }
+  if (codigoEvento != NENHUM_EVENTO)
+  {
+      codigoAcao = obterAcao(estado, codigoEvento);
+      estado = obterProximoEstado(estado, codigoEvento);
+      eventoInterno = executarAcao(codigoAcao);
+      Serial.print("Estado: ");
+      Serial.print(estado);
+      Serial.print(" Evento: ");
+      Serial.print(codigoEvento);
+      Serial.print(" Acao: ");
+      Serial.println(codigoAcao);
+  }
 }
 
+void taskObterEvento() {
 
+    if (Botao() == 1 && (estado == IDLE)) {
+        codigoEvento = RIGHT_ESCOLHE_MODO;
+    }
+    else if (Botao() == 2) {
+        codigoEvento = UP;
+    }
+    else if (Botao() == 3) {
+        codigoEvento = DOWN; 
+    }
+    else if (Botao() == 4) {
+        codigoEvento = LEFT; 
+    }
+    else if ((estado == MODOS_DE_JOGO) && peca_pronta(game)) {
+        codigoEvento = POSICIONAMENTO_DAS_PECAS; 
+    }
+    else if (Botao() == 5) {
+        codigoEvento = BOTAO_TIMER; 
+    }
+    else if ((estado == TURNO) && peca_levantou()) {
+        codigoEvento = LEVANTA_PECA; 
+    }
+    else if (1 == 0) {
+        codigoEvento = DEVOLVE_PECA; 
+    }
+    else if ((estado == JOGADA) && peca_abaixou()) {
+        codigoEvento = ESCOLHE_CASA; 
+    }
+    else if (1 == 0) {
+        codigoEvento = ESCOLHA_ILEGAL; 
+    }
+    else if ((estado == ILEGAL) && trata_peca_ilegal() ) {
+        codigoEvento = LEVANTA_PECA_ILEGAL; 
+    }
+    else if (1 == 0) {
+        codigoEvento = VITORIA_DERROTA; 
+    }
+    else if (1 == 0) {
+        codigoEvento = LEGAL_nULTIMO; 
+    }
+    else if ((timer && (Botao()== 5)) && (estado == VERIFICACAO)) {
+        codigoEvento = LEGAL_ULTIMO; 
+    }
+    else if ((estado != FIM ) && acaba_tempo()) {
+        codigoEvento = ACABA_TEMPO; 
+    }
+    else if (1 == 0) {
+        codigoEvento = LEFT_T; 
+    }
+    else if (1 == 0) {
+        codigoEvento = LEFT_J; 
+    }
+    else if (1 == 0) {
+        codigoEvento = LEFT_I; 
+    }
+    else if (1 == 0) {
+        codigoEvento = LEFT_V; 
+    }
+    else if ((Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
+        codigoEvento = RIGHT_JOGAR_NOVAMENTE; 
+    }
+    else if ((Botao() == 1 && contador_vertical_fim == 1 && estado == FIM)) {
+        codigoEvento = RIGHT_MENU_PRINCIPAL; 
+    }
+    else {
+        codigoEvento = NENHUM_EVENTO;
+    }
+}
 
 
 int executarAcao(int codigoAcao) {
@@ -364,6 +173,7 @@ int executarAcao(int codigoAcao) {
       break;
     case A12:
       lcd_vitoria_derrota();
+      animacao_vencedor();
       tempo_MARROM = TEMPO_POR_JOGADOR;
       tempo_BRANCO = TEMPO_POR_JOGADOR;
       Serial.println("A12");

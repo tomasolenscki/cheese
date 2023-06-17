@@ -11,7 +11,7 @@
 #define COLOR_ORDER GRB     //Ordem das cores na fita de led WS2812B
 #define NUM_LEDS    5      //numero de leds na fita
 
-#define BRIGHTNESS          125   //brilho dos leds  0 a 255
+#define BRIGHTNESS          200   //brilho dos leds  0 a 255
 
 
 void acende_todos_os_leds(void);
@@ -22,6 +22,8 @@ void acende_possiveis_jogadas();
 void acende_casas_ilegais();
 void animacao_vez_do_jogador();
 void animacao_inicio();
+void acende_todos_os_leds_branco(void);
+void acende_todos_os_leds_marrom(void);
 
 CRGB leds0[NUM_LEDS];
 CRGB leds1[NUM_LEDS];

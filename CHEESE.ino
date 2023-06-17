@@ -8,25 +8,39 @@
 #include "botao.h"
 #include "jogo.h"
 #include "timer.h"
-// #include "bt.h"
+#include "task_switcher.h"
+#include "bt.h"
 
 /*
-  CHEESE
-  GUILHERME RODRIGUES MONTEIRO - 10706103
-  JOAO RODRIGO WINDISCH OLENSCKI - 10773224
-  LUCA RODRIGUES MIGUEL - 10705655
-  LUI DAMIANCI FERREIRA - 10770579
+  CHEESE - Grupo A
+  Eric Toshio Mizukami (11804272)
+  Marco Antonio Jabes Galvão Filho (11369711)
+  Renan Hideo Watanabe (4777842)
+  Tomás Windisch Olenscki (11803490)
 */
 
+#define TASK_INTERVAL1 100
+#define TASK_INTERVAL2 100
+#define TASK_INTERVAL3 10
+
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
-// SoftwareSerial bt(18, 19); //Rx Tx
+SoftwareSerial bt(tx, rx); //Rx Tx
+
 
 void setup() {
+
+  TaskController.createTask(&taskMaqEstados, TASK_INTERVAL1);
+  TaskController.createTask(&taskObterEvento, TASK_INTERVAL2);
+  TaskController.createTask(&taskImprimeMatriz, TASK_INTERVAL3);
+
+  TaskController.begin(1000);
+
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-  // bt.begin(9600);
+  bt.begin(9600);
   lcd.begin(16,2);
   lcd.clear();
+  delay(2000);
   Serial.println("Maquina de Estados iniciada");
   lcd.print("Escolha o modo: ");
   // make the pushbutton's pin an input:
@@ -51,44 +65,6 @@ void setup() {
 
 void loop() {
   
-  if (eventoInterno == NENHUM_EVENTO) {
-    codigoEvento = obterEvento();
-  }
-  else {
-    Serial.println("evento interno:");
-    Serial.println(eventoInterno);
-    codigoEvento = eventoInterno;
-    eventoInterno = NENHUM_EVENTO; 
-  }
+  TaskController.runCurrentTask();
 
-  if (codigoEvento != NENHUM_EVENTO)
-  {
-    codigoAcao = obterAcao(estado, codigoEvento);
-    eventoInterno = executarAcao(codigoAcao);
-    estado = obterProximoEstado(estado, codigoEvento);
-    Serial.print("Estado: ");
-    Serial.print(estado);
-    Serial.print(" Evento: ");
-    Serial.print(codigoEvento);
-    Serial.print(" Acao: ");
-    Serial.println(codigoAcao);
-  }
-
-  if (contando_tempo){
-    desconta_tempo();
-    Serial.print("tempo_BRANCO");
-    Serial.println(tempo_BRANCO);
-    Serial.print("tempo_MARROM");
-    Serial.println(tempo_MARROM);    
-    min_MARROM = (int)(tempo_MARROM/60000);
-    seg_MARROM = (int)((tempo_MARROM%60000) / 1000 );
-    min_BRANCO = (int)(tempo_BRANCO/60000);
-    seg_BRANCO = (int)((tempo_BRANCO%60000) / 1000 );
-    lcd.setCursor(0,0);
-    lcd.print("M: " + String(padZero(min_MARROM)) + ":" + String(padZero(seg_MARROM)));
-    lcd.setCursor(0,1);
-    lcd.print("B: " + String(padZero(min_BRANCO)) + ":" + String(padZero(seg_BRANCO)));
-  }
-
-  delay(100);
 }

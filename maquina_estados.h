@@ -68,7 +68,7 @@ int codigoEvento = NENHUM_EVENTO;
 int codigoAcao;
 int estado = IDLE;
 
-int obterEvento();
+// int obterEvento();
 int obterAcao(int estado, int codigoEvento);
 int obterProximoEstado(int estado, int codigoEvento);
 int executarAcao(int codigoAcao);
