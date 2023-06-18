@@ -22,22 +22,17 @@ void preenche_cor(int jogador){
   }
 }
 
-bool peca_pronta(int game){
+bool peca_pronta(){
 
   le_sensores();
 
-  if(game == CHEESE) {
-    for(int i=0; i<=4; i++){
-      for(int j=0; j<=4; j++){
-        if (sensores[i][j] != tabuleiro_inicial_cheese[i][j]) return false;
-      }
+  for(int i=0; i<=4; i++){
+    for(int j=0; j<=4; j++){
+      if (sensores[i][j] != tabuleiro_inicial_cheese[i][j]) return false;
     }
-    return true;
   }
+  return true;
 
-  else if(game == QUEENS) {
-    return true;
-  }
 }
 
 bool peca_levantou(){
@@ -96,8 +91,8 @@ void reinicia_tabuleiro_cheese(){
     }
   }
 
-  neutron = false;
-  jogador_da_vez = 2;
+  cheese = false;
+  jogador_da_vez = (int) random(1,2);
 
 }
 
@@ -133,8 +128,8 @@ int possible_moves() {
   return num_moves;
 }
 
-bool neutron_preso() {
-  acha_neutron();
+bool cheese_preso() {
+  acha_cheese();
   int num_moves = 0;
   int x = pos_cheese.x;
   int y = pos_cheese.y;
@@ -172,13 +167,13 @@ bool verifica_jogador_cheese(){
   // Serial.println(y_inicio);
   // Serial.println(tabuleiro_cheese[x_inicio][y_inicio]);
   // Serial.println(jogador_da_vez); 
-  if (((tabuleiro_cheese[x_inicio][y_inicio] == jogador_da_vez) && (neutron == false)) || ((tabuleiro_cheese[x_inicio][y_inicio] == NEUTRON) && (neutron == true))){
+  if (((tabuleiro_cheese[x_inicio][y_inicio] == jogador_da_vez) && (cheese == false)) || ((tabuleiro_cheese[x_inicio][y_inicio] == NEUTRON) && (cheese == true))){
     return true;
   }
   return false;
 }
 
-void acha_neutron(){
+void acha_cheese(){
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
@@ -250,68 +245,57 @@ int verifica_jogada(){
   int x_fim = casa_escolhida.x;
   int y_fim = casa_escolhida.y;
 
-  if (game == CHEESE){
 
-    if ((x_fim == x_inicio ) && (y_fim == y_inicio)){
-      return DEVOLVE_PECA;
-    }
 
-    if (!verifica_jogador_cheese()){
-      return ESCOLHA_ILEGAL;
-    }
-
-    if (!verifica_casa_escolhida(x_fim, y_fim)){
-      return ESCOLHA_ILEGAL;
-    }
-
-    if (neutron && ((x_fim == 0 ) || (x_fim==4))) {
-      contando_tempo = false;
-      jogador_vencedor = (x_fim == 0 ) ? MARROM : BRANCO;
-      return VITORIA_DERROTA;
-    }
-
-    tabuleiro_cheese[x_inicio][y_inicio] = 0;
-    tabuleiro_cheese[x_fim][y_fim] = neutron ? NEUTRON : jogador_da_vez;
-
-    if (neutron_preso()){
-      contando_tempo = false;
-      jogador_vencedor = jogador_da_vez;
-      return VITORIA_DERROTA;
-    }
-
-    if (jogador_da_vez == BRANCO) {
-      jogador_da_vez = neutron ? BRANCO : MARROM;
-    }
-    else if (jogador_da_vez == MARROM){
-      jogador_da_vez = neutron ? MARROM : BRANCO;
-    }
-
-    // Serial.println("Jogador_atual");
-    // Serial.println(jogador_da_vez);
-  
-    neutron = !neutron;
-    // Serial.println("neutron");
-    // Serial.println(neutron);
-
-    acha_neutron();
-    acha_ratos_marrons();
-    acha_ratos_brancos();
-
-    // if (neutron && !timer){
-    //   return LEGAL_ULTIMO;
-    // } else if (neutron && timer){
-    //   return VERIFICACAO; // ainda tem que esperar o botao timer
-    // } else if (!neutron){
-    //   return LEGAL_nULTIMO;
-    // }
-
-  return neutron ? LEGAL_ULTIMO : LEGAL_nULTIMO ;
-
+  if ((x_fim == x_inicio ) && (y_fim == y_inicio)){
+    return DEVOLVE_PECA;
   }
 
-  else if (game  == QUEENS){
-    return -1;
+  if (!verifica_jogador_cheese()){
+    return ESCOLHA_ILEGAL;
   }
+
+  if (!verifica_casa_escolhida(x_fim, y_fim)){
+    return ESCOLHA_ILEGAL;
+  }
+
+  if (cheese && ((x_fim == 0 ) || (x_fim==4))) {
+    contando_tempo = false;
+    jogador_vencedor = (x_fim == 0 ) ? MARROM : BRANCO;
+    return VITORIA_DERROTA;
+  }
+
+  tabuleiro_cheese[x_inicio][y_inicio] = 0;
+  tabuleiro_cheese[x_fim][y_fim] = cheese ? NEUTRON : jogador_da_vez;
+
+  if (cheese_preso()){
+    contando_tempo = false;
+    jogador_vencedor = jogador_da_vez;
+    return VITORIA_DERROTA;
+  }
+
+  if (jogador_da_vez == BRANCO) {
+    jogador_da_vez = cheese ? BRANCO : MARROM;
+  }
+  else if (jogador_da_vez == MARROM){
+    jogador_da_vez = cheese ? MARROM : BRANCO;
+  }
+
+  cheese = !cheese;
+
+  acha_cheese();
+  acha_ratos_marrons();
+  acha_ratos_brancos();
+
+  // if (neutron && !timer){
+  //   return LEGAL_ULTIMO;
+  // } else if (neutron && timer){
+  //   return VERIFICACAO; // ainda tem que esperar o botao timer
+  // } else if (!neutron){
+  //   return LEGAL_nULTIMO;
+  // }
+
+  return cheese ? LEGAL_ULTIMO : LEGAL_nULTIMO ;
 
 }
 

@@ -1,8 +1,8 @@
 #ifndef TIMER_H_INCLUDED
 #define TIMER_H_INCLUDED
 
-// #define TEMPO_POR_JOGADOR 300000 // 5 min para cada jogador
-#define TEMPO_POR_JOGADOR 15000 // 5 min para cada jogador
+#define TEMPO_POR_JOGADOR 300000 // 5 min para cada jogador
+
 
 unsigned long tempo_MARROM = TEMPO_POR_JOGADOR;
 int min_MARROM;

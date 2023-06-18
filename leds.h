@@ -14,24 +14,29 @@
 #define BRIGHTNESS          200   //brilho dos leds  0 a 255
 
 
-void acende_todos_os_leds(void);
-void apaga_todos_os_leds(void);
-void acende_casa(int sensores[5][5]);
-void inicial_cheese();
-void acende_possiveis_jogadas();
-void acende_casas_ilegais();
-void animacao_vez_do_jogador();
-void animacao_inicio();
-void acende_todos_os_leds_branco(void);
-void acende_todos_os_leds_marrom(void);
-
 CRGB leds0[NUM_LEDS];
 CRGB leds1[NUM_LEDS];
 CRGB leds2[NUM_LEDS];
 CRGB leds3[NUM_LEDS];
 CRGB leds4[NUM_LEDS];
 
-CRGB rgb_marrom = CRGB(92,51,23);
+const CRGB rgb_marrom = CRGB(139, 69, 19);
+const CRGB rgb_branco = CRGB(100, 100, 100);
+const CRGB rgb_verde = CRGB(0, 100, 0);
+const CRGB rgb_vermelho_claro = CRGB(100, 0, 0);
+const CRGB rgb_vermelho_escuro = CRGB(200, 0, 0);
+const CRGB rgb_azul = CRGB(0, 100, 100);
+const CRGB rgb_amarelo = CRGB(100, 100, 0);
+const CRGB rgb_apagado = CRGB(0, 0, 0);
 
+void acende_todos_os_leds(CRGB cor);
+void inicial_cheese();
+void acende_possiveis_jogadas();
+void acende_casas_ilegais();
+void animacao_vez_do_jogador();
+void animacao_inicio();
+void animacao_vencedor();
+bool verificarPosicaoEncontradaBranco(int x, int y);
+bool verificarPosicaoEncontradaMarrom(int x, int y);
 
 #endif // LEDS_H_INCLUDED

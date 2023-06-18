@@ -50,7 +50,7 @@ void taskObterEvento() {
     else if ((Botao() == 4 && ((estado == MODOS_DE_JOGO) || (estado == TURNO) || (estado == JOGADA) || (estado == VERIFICACAO) || (estado == ILEGAL) ))) {
         codigoEvento = LEFT; 
     }
-    else if ((estado == MODOS_DE_JOGO) && peca_pronta(game)) {
+    else if ((estado == MODOS_DE_JOGO) && peca_pronta()) {
         codigoEvento = POSICIONAMENTO_DAS_PECAS; 
     }
     else if (Botao() == 5) {
@@ -117,14 +117,14 @@ int executarAcao(int codigoAcao) {
       break;
     case A04:
       Serial.println("A04");
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
       lcd_menu_principal();
       break;
     case A05:
       lcd.clear();
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
       animacao_inicio();
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
       lcd.print("Boa partida");
       lcd.setCursor(0,1);
       jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
@@ -137,6 +137,7 @@ int executarAcao(int codigoAcao) {
     case A06:
       Serial.println("A06");
       lcd.clear();
+      jogador_da_vez = (int) random(1,2);
       acha_ratos_marrons();
       acha_ratos_brancos();
       animacao_vez_do_jogador();
@@ -158,7 +159,7 @@ int executarAcao(int codigoAcao) {
     case A09:
       Serial.println("A09");
       estadoSalvo = estado;
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
       delay(100);
       return verifica_jogada();
       break;

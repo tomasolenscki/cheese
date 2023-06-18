@@ -1,7 +1,7 @@
 #ifndef TASK_SWITCHER_H_INCLUDED
 #define TASK_SWITCHER_H_INCLUDED
 
-#define MAX_TAREFAS 3
+#define MAX_TAREFAS 4
 
 typedef struct {
 void (*task)();

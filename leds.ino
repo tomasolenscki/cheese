@@ -1,118 +1,42 @@
 #include <Arduino.h>
 #include "leds.h"
 
-
-void acende_todos_os_leds(void){
-
-for(int i=0; i<=4; i++){
-    for(int j=0; j<=4; j++){
-      switch (i){
-        case (0):
-          leds0[j] = CRGB(0, 100, 100);
-        break;
-        case (1):
-          leds1[j] = CRGB(0, 100, 100);
-        break;
-        case (2):
-          leds2[j] = CRGB(0, 100, 100);
-        break;
-        case (3):
-          leds3[j] = CRGB(0, 100, 100);
-        break;
-        case (4):
-          leds4[j] = CRGB(0, 100, 100);
-        break;
-      } 
-    } 
-  }
-
-FastLED.show();
-delay(50);
-
-}
-
-void apaga_todos_os_leds(void){
-
-for(int i=0; i<=4; i++){
-    for(int j=0; j<=4; j++){
-      switch (i){
-        case (0):
-          leds0[j] = CRGB(0, 0, 0);
-        break;
-        case (1):
-          leds1[j] = CRGB(0, 0, 0);
-        break;
-        case (2):
-          leds2[j] = CRGB(0, 0, 0);
-        break;
-        case (3):
-          leds3[j] = CRGB(0, 0, 0);
-        break;
-        case (4):
-          leds4[j] = CRGB(0, 0, 0);
-        break;
-      } 
-    } 
-  }
-
-FastLED.show();
-delay(50);
-
-}
-
-void acende_casa(int sensores[5][5]){
+void acende_todos_os_leds(CRGB cor){
 
   for(int i=0; i<=4; i++){
-    for(int j=0; j<=4; j++){
-      if(sensores[i][j] == 0){
+      for(int j=0; j<=4; j++){
         switch (i){
           case (0):
-            leds0[4-j] = CRGB(0, 0, 0);
+            leds0[j] = cor;
           break;
           case (1):
-            leds1[4-j] = CRGB(0, 0, 0);
+            leds1[j] = cor;
           break;
           case (2):
-            leds2[4-j] = CRGB(0, 0, 0);
+            leds2[j] = cor;
           break;
           case (3):
-            leds3[4-j] = CRGB(0, 0, 0);
+            leds3[j] = cor;
           break;
           case (4):
-            leds4[4-j] = CRGB(0, 0, 0);
+            leds4[j] = cor;
           break;
-        }
-      }
-      else{
-        switch (i){
-          case (0):
-            leds0[4-j] = CRGB(0, 100, 100);
-          break;
-          case (1):
-            leds1[4-j] = CRGB(0, 100, 100);
-          break;
-          case (2):
-            leds2[4-j] = CRGB(0, 100, 100);
-          break;
-          case (3):
-            leds3[4-j] = CRGB(0, 100, 100);
-          break;
-          case (4):
-            leds4[4-j] = CRGB(0, 100, 100);
-          break;
-        }
-      }
+        } 
+      } 
     }
-  }
+
+  FastLED.show();
+  delay(50);
+
 }
 
 void inicial_cheese(){
   for(int i=0; i<=4; i++){
-    leds0[i] = CRGB(100, 0, 0);
-    leds4[i] = CRGB(100, 0, 0);
+    leds0[i] = rgb_vermelho_claro;
+    leds4[i] = rgb_vermelho_claro;
   }
 
-  leds2[2] = CRGB(100, 0, 0);
+  leds2[2] = rgb_vermelho_claro;
 
   FastLED.show();
 }
@@ -124,19 +48,19 @@ void acende_possiveis_jogadas(){
  
   switch (x){
     case (0):
-      leds0[y] = CRGB(100, 100, 0);
+      leds0[y] = rgb_amarelo;
     break;
     case (1):
-      leds1[y] = CRGB(100, 100, 0);
+      leds1[y] = rgb_amarelo;
     break;
     case (2):
-      leds2[y] = CRGB(100, 100, 0);
+      leds2[y] = rgb_amarelo;
     break;
     case (3):
-      leds3[y] = CRGB(100, 100, 0);
+      leds3[y] = rgb_amarelo;
     break;
     case (4):
-      leds4[y] = CRGB(100, 100, 0);
+      leds4[y] = rgb_amarelo;
     break;
   }
 
@@ -146,19 +70,19 @@ void acende_possiveis_jogadas(){
     y = moves[i].y;
     switch (x){
       case (0):
-        leds0[y] = CRGB(0, 100, 0);
+        leds0[y] = rgb_verde;
       break;
       case (1):
-        leds1[y] = CRGB(0, 100, 0);
+        leds1[y] = rgb_verde;
       break;
       case (2):
-        leds2[y] = CRGB(0, 100, 0);
+        leds2[y] = rgb_verde;
       break;
       case (3):
-        leds3[y] = CRGB(0, 100, 0);
+        leds3[y] = rgb_verde;
       break;
       case (4):
-        leds4[y] = CRGB(0, 100, 0);
+        leds4[y] = rgb_verde;
       break;
     }
   }
@@ -173,19 +97,19 @@ void acende_casas_ilegais(){
   int y = peca_levantada.y;
   switch (x){
     case (0):
-      leds0[y] = CRGB(100, 0, 0);
+      leds0[y] = rgb_vermelho_claro;
     break;
     case (1):
-      leds1[y] = CRGB(100, 0, 0);
+      leds1[y] = rgb_vermelho_claro;
     break;
     case (2):
-      leds2[y] = CRGB(100, 0, 0);
+      leds2[y] = rgb_vermelho_claro;
     break;
     case (3):
-      leds3[y] = CRGB(100, 0, 0);
+      leds3[y] = rgb_vermelho_claro;
     break;
     case (4):
-      leds4[y] = CRGB(100, 0, 0);
+      leds4[y] = rgb_vermelho_claro;
     break;
   }
 
@@ -193,19 +117,19 @@ void acende_casas_ilegais(){
   y = casa_escolhida.y;
   switch (x){
     case (0):
-      leds0[y] = CRGB(200, 0, 0);
+      leds0[y] = rgb_vermelho_escuro;
     break;
     case (1):
-      leds1[y] = CRGB(200, 0, 0);
+      leds1[y] = rgb_vermelho_escuro;
     break;
     case (2):
-      leds2[y] = CRGB(200, 0, 0);
+      leds2[y] = rgb_vermelho_escuro;
     break;
     case (3):
-      leds3[y] = CRGB(200, 0, 0);
+      leds3[y] = rgb_vermelho_escuro;
     break;
     case (4):
-      leds4[y] = CRGB(200, 0, 0);
+      leds4[y] = rgb_vermelho_escuro;
     break;
   }
 
@@ -215,258 +139,196 @@ void acende_casas_ilegais(){
 
 void animacao_vez_do_jogador(){
   int x, y;
-  // Serial.println("neutron?");
-  // Serial.println(neutron);
-  if (neutron) {
+  if (cheese) {
     x = pos_cheese.x;
     y = pos_cheese.y;
-    // Serial.println("pos neutron");
-    // Serial.println(x);
-    // Serial.println(y); 
-    if (jogador_da_vez == 1){
-      apaga_todos_os_leds();
+    if (jogador_da_vez ==  MARROM){
+      acende_todos_os_leds(rgb_apagado);
       switch (x){
         case (0):
-          leds0[y] = CRGB(92,51,23);
+          leds0[y] = rgb_marrom;
         break;
         case (1):
-          leds1[y] = CRGB(92,51,23);
+          leds1[y] = rgb_marrom;
         break;
         case (2):
-          leds2[y] = CRGB(92,51,23);
+          leds2[y] = rgb_marrom;
         break;
         case (3):
-          leds3[y] = CRGB(92,51,23);
+          leds3[y] = rgb_marrom;
         break;
         case (4):
-          leds4[y] = CRGB(92,51,23);
+          leds4[y] = rgb_marrom;
         break;
       }
       FastLED.show();
       delay(1000);
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
 
     }
     else {
       switch (x){
         case (0):
-          leds0[y] = CRGB(100, 100, 100);
+          leds0[y] = rgb_branco;
         break;
         case (1):
-          leds1[y] = CRGB(100, 100, 100);
+          leds1[y] = rgb_branco;
         break;
         case (2):
-          leds2[y] = CRGB(100, 100, 100);
+          leds2[y] = rgb_branco;
         break;
         case (3):
-          leds3[y] = CRGB(100, 100, 100);
+          leds3[y] = rgb_branco;
         break;
         case (4):
-          leds4[y] = CRGB(100, 100, 100);
+          leds4[y] = rgb_branco;
         break;
       }
       FastLED.show();
       delay(1000);
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
     }
   }
 
   else{
-    if (jogador_da_vez == 1){
-      apaga_todos_os_leds();
+    if (jogador_da_vez == MARROM){
+      acende_todos_os_leds(rgb_apagado);
       for(int i=0; i<=4; i++){
         x = pos_ratos_marrons[i].x;
         y = pos_ratos_marrons[i].y;
         switch (x){
           case (0):
-            leds0[y] = CRGB(92,51,23);
+            leds0[y] = rgb_marrom;
           break;
           case (1):
-            leds1[y] = CRGB(92,51,23);
+            leds1[y] = rgb_marrom;
           break;
           case (2):
-            leds2[y] = CRGB(92,51,23);
+            leds2[y] = rgb_marrom;
           break;
           case (3):
-            leds3[y] = CRGB(92,51,23);
+            leds3[y] = rgb_marrom;
           break;
           case (4):
-            leds4[y] = CRGB(92,51,23);
+            leds4[y] = rgb_marrom;
           break;
         }
       }
       FastLED.show();
       delay(1000);
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
     }
 
     else {
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
       for(int i=0; i<=4; i++){
         x = pos_ratos_brancos[i].x;
         y = pos_ratos_brancos[i].y;
         switch (x){
           case (0):
-            leds0[y] = CRGB(100,100,100);
+            leds0[y] = rgb_branco;
           break;
           case (1):
-            leds1[y] = CRGB(100,100,100);
+            leds1[y] = rgb_branco;
           break;
           case (2):
-            leds2[y] = CRGB(100,100,100);
+            leds2[y] = rgb_branco;
           break;
           case (3):
-            leds3[y] = CRGB(100,100,100);
+            leds3[y] = rgb_branco;
           break;
           case (4):
-            leds4[y] = CRGB(100,100,100);
+            leds4[y] = rgb_branco;
           break;
         }
       }
       FastLED.show();
       delay(1000);
-      apaga_todos_os_leds();
+      acende_todos_os_leds(rgb_apagado);
     }
   }
 }
 
 void animacao_inicio(){
   int x, y;
-  leds2[2] = CRGB(0,100,100);
+  leds2[2] = rgb_azul;
   FastLED.show();
-  delay(700);
+  delay(500);
   for(int i=1; i<=3; i++){
     for(int j=1; j<=3; j++){
       switch (i){
         case (0):
-          leds0[j] = CRGB(0,100,100);
+          leds0[j] = rgb_azul;
         break;
         case (1):
-          leds1[j] = CRGB(0,100,100);
+          leds1[j] = rgb_azul;
         break;
         case (2):
-          leds2[j] = CRGB(0,100,100);
+          leds2[j] = rgb_azul;
         break;
         case (3):
-          leds3[j] = CRGB(0,100,100);
+          leds3[j] = rgb_azul;
         break;
         case (4):
-          leds4[j] = CRGB(0,100,100);
+          leds4[j] = rgb_azul;
         break;
       }      
     }
   }
   FastLED.show();
   delay(700);
-  acende_todos_os_leds();
+  acende_todos_os_leds(rgb_azul);
   delay(700);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   delay(300);
-  acende_todos_os_leds();
+  acende_todos_os_leds(rgb_azul);
   delay(300);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   delay(300);
-  acende_todos_os_leds();
+  acende_todos_os_leds(rgb_azul);
   delay(1000);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
 }
 
-void acende_todos_os_leds_branco(void){
 
-for(int i=0; i<=4; i++){
-    for(int j=0; j<=4; j++){
-      switch (i){
-        case (0):
-          leds0[j] = CRGB(100, 100, 100);
-        break;
-        case (1):
-          leds1[j] = CRGB(100, 100, 100);
-        break;
-        case (2):
-          leds2[j] = CRGB(100, 100, 100);
-        break;
-        case (3):
-          leds3[j] = CRGB(100, 100, 100);
-        break;
-        case (4):
-          leds4[j] = CRGB(100, 100, 100);
-        break;
-      } 
-    } 
-  }
-
-FastLED.show();
-delay(50);
-
-}
-
-void acende_todos_os_leds_marrom(void){
-
-for(int i=0; i<=4; i++){
-    for(int j=0; j<=4; j++){
-      switch (i){
-        case (0):
-          leds0[j] = rgb_marrom;
-        break;
-        case (1):
-          leds1[j] = rgb_marrom;
-        break;
-        case (2):
-          leds2[j] = rgb_marrom;
-        break;
-        case (3):
-          leds3[j] = rgb_marrom;
-        break;
-        case (4):
-          leds4[j] = rgb_marrom;
-        break;
-      } 
-    } 
-  }
-
-FastLED.show();
-delay(50);
-
-}
 
 void animacao_vencedor(){
-  //Talvez tenha que atualizar a posição dos ratos, lembrar de testar
-  if (jogador_vencedor == 2){
+  if (jogador_vencedor == BRANCO){
     for (int x = 0; x <= 4; x++) {
       for (int y = 0; y <= 4 ; y++) {
         switch (x){
           case (0):
-            leds0[y] = CRGB(0,100,100);
+            leds0[y] = rgb_azul;
           break;
           case (1):
-            leds1[y] = CRGB(0,100,100);
+            leds1[y] = rgb_azul;
           break;
           case (2):
-            leds2[y] = CRGB(0,100,100);
+            leds2[y] = rgb_azul;
           break;
           case (3):
-            leds3[y] = CRGB(0,100,100);
+            leds3[y] = rgb_azul;
           break;
           case (4):
-            leds4[y] = CRGB(0,100,100);
+            leds4[y] = rgb_azul;
           break;
         } 
         if (verificarPosicaoEncontradaBranco(x, y)) {
           switch (x){
             case (0):
-              leds0[y] = CRGB(100,100,100);
+              leds0[y] = rgb_branco;
             break;
             case (1):
-              leds1[y] = CRGB(100,100,100);
+              leds1[y] = rgb_branco;
             break;
             case (2):
-              leds2[y] = CRGB(100,100,100);
+              leds2[y] = rgb_branco;
             break;
             case (3):
-              leds3[y] = CRGB(100,100,100);
+              leds3[y] = rgb_branco;
             break;
             case (4):
-              leds4[y] = CRGB(100,100,100);
+              leds4[y] = rgb_branco;
             break;
           } 
         }  
@@ -476,37 +338,37 @@ void animacao_vencedor(){
         for (int y = 0; y <= 4 ; y++) {
           switch (x){
             case (0):
-              leds0[y] = CRGB(0,0,0);
+              leds0[y] = rgb_apagado;
             break;
             case (1):
-              leds1[y] = CRGB(0,0,0);
+              leds1[y] = rgb_apagado;
             break;
             case (2):
-              leds2[y] = CRGB(0,0,0);
+              leds2[y] = rgb_apagado;
             break;
             case (3):
-              leds3[y] = CRGB(0,0,0);
+              leds3[y] = rgb_apagado;
             break;
             case (4):
-              leds4[y] = CRGB(0,0,0);
+              leds4[y] = rgb_apagado;
             break;
           } 
           if (verificarPosicaoEncontradaBranco(x, y)) {
             switch (x){
               case (0):
-                leds0[y] = CRGB(100,100,100);
+                leds0[y] = rgb_branco;
               break;
               case (1):
-                leds1[y] = CRGB(100,100,100);
+                leds1[y] = rgb_branco;
               break;
               case (2):
-                leds2[y] = CRGB(100,100,100);
+                leds2[y] = rgb_branco;
               break;
               case (3):
-                leds3[y] = CRGB(100,100,100);
+                leds3[y] = rgb_branco;
               break;
               case (4):
-                leds4[y] = CRGB(100,100,100);
+                leds4[y] = rgb_branco;
               break;
             } 
           }
@@ -514,56 +376,56 @@ void animacao_vencedor(){
         FastLED.show();
         delay(60);    
     }
-  acende_todos_os_leds_branco();
+  acende_todos_os_leds(rgb_branco);
   delay(700);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   delay(300);
-  acende_todos_os_leds_branco();
+  acende_todos_os_leds(rgb_branco);
   delay(300);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   delay(300);
-  acende_todos_os_leds_branco();
+  acende_todos_os_leds(rgb_branco);
   delay(1000);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   }
 
 
-  if (jogador_vencedor == 1){
+  if (jogador_vencedor == MARROM){
     for (int x = 0; x <= 4; x++) {
       for (int y = 0; y <= 4 ; y++) {
         switch (x){
           case (0):
-            leds0[y] = CRGB(0,100,100);
+            leds0[y] = rgb_azul;
           break;
           case (1):
-            leds1[y] = CRGB(0,100,100);
+            leds1[y] = rgb_azul;
           break;
           case (2):
-            leds2[y] = CRGB(0,100,100);
+            leds2[y] = rgb_azul;
           break;
           case (3):
-            leds3[y] = CRGB(0,100,100);
+            leds3[y] = rgb_azul;
           break;
           case (4):
-            leds4[y] = CRGB(0,100,100);
+            leds4[y] = rgb_azul;
           break;
         } 
         if (verificarPosicaoEncontradaMarrom(x, y)) {
           switch (x){
             case (0):
-              leds0[y] = CRGB(139,69,19);
+              leds0[y] = rgb_marrom;
             break;
             case (1):
-              leds1[y] = CRGB(139,69,19);
+              leds1[y] = rgb_marrom;
             break;
             case (2):
-              leds2[y] = CRGB(139,69,19);
+              leds2[y] = rgb_marrom;
             break;
             case (3):
-              leds3[y] = CRGB(139,69,19);
+              leds3[y] = rgb_marrom;
             break;
             case (4):
-              leds4[y] = CRGB(139,69,19);
+              leds4[y] = rgb_marrom;
             break;
           } 
         }  
@@ -573,37 +435,37 @@ void animacao_vencedor(){
         for (int y = 0; y <= 4 ; y++) {
           switch (x){
             case (0):
-              leds0[y] = CRGB(0,0,0);
+              leds0[y] = rgb_apagado;
             break;
             case (1):
-              leds1[y] = CRGB(0,0,0);
+              leds1[y] = rgb_apagado;
             break;
             case (2):
-              leds2[y] = CRGB(0,0,0);
+              leds2[y] = rgb_apagado;
             break;
             case (3):
-              leds3[y] = CRGB(0,0,0);
+              leds3[y] = rgb_apagado;
             break;
             case (4):
-              leds4[y] = CRGB(0,0,0);
+              leds4[y] = rgb_apagado;
             break;
           } 
           if (verificarPosicaoEncontradaMarrom(x, y)) {
             switch (x){
               case (0):
-                leds0[y] = CRGB(139,69,19);
+                leds0[y] = rgb_marrom;
               break;
               case (1):
-                leds1[y] = CRGB(139,69,19);
+                leds1[y] = rgb_marrom;
               break;
               case (2):
-                leds2[y] = CRGB(139,69,19);
+                leds2[y] = rgb_marrom;
               break;
               case (3):
-                leds3[y] = CRGB(139,69,19);
+                leds3[y] = rgb_marrom;
               break;
               case (4):
-                leds4[y] = CRGB(139,69,19);
+                leds4[y] = rgb_marrom;
               break;
             } 
           }
@@ -611,17 +473,17 @@ void animacao_vencedor(){
         FastLED.show();
         delay(60);    
     }
-  acende_todos_os_leds_marrom();
+  acende_todos_os_leds(rgb_marrom);
   delay(700);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   delay(300);
-  acende_todos_os_leds_marrom();
+  acende_todos_os_leds(rgb_marrom);
   delay(300);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   delay(300);
-  acende_todos_os_leds_marrom();
+  acende_todos_os_leds(rgb_marrom);
   delay(1000);
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
   }
 }
 

@@ -56,8 +56,9 @@ void setup() {
     // set master brightness control
   FastLED.setBrightness(BRIGHTNESS);
 
-  apaga_todos_os_leds();
+  acende_todos_os_leds(rgb_apagado);
 
+  randomSeed(analogRead(8));
 
 }
 
