@@ -32,28 +32,29 @@ void taskMaqEstados() {
 }
 
 void taskObterEvento() {
-
-    if (botao.Botao() == 1 && (estado == IDLE)) {
+    int botao_evento = botao.Botao();
+    
+    if (botao_evento == 1 && (estado == IDLE)) {
         codigoEvento = RIGHT_ESCOLHE_MODO;
     }
 
-    else if (botao.Botao() == 1 && (estado == EMPATE)) {
+    else if (botao_evento == 1 && (estado == EMPATE)) {
       codigoEvento = RIGHT_ESCOLHE_MODO;
     }
 
-    else if (botao.Botao() == 2) {
+    else if (botao_evento == 2) {
         codigoEvento = UP;
     }
-    else if (botao.Botao() == 3) {
+    else if (botao_evento == 3) {
         codigoEvento = DOWN; 
     }
-    else if ((botao.Botao() == 4 && ((estado == MODOS_DE_JOGO) || (estado == TURNO) || (estado == JOGADA) || (estado == VERIFICACAO) || (estado == ILEGAL) ))) {
+    else if ((botao_evento == 4 && ((estado == MODOS_DE_JOGO) || (estado == TURNO) || (estado == JOGADA) || (estado == VERIFICACAO) || (estado == ILEGAL) ))) {
         codigoEvento = LEFT; 
     }
     else if ((estado == MODOS_DE_JOGO) && peca_pronta()) {
         codigoEvento = POSICIONAMENTO_DAS_PECAS; 
     }
-    else if ((botao.Botao() == 5) || ((estado == PRONTO) && (!timer))) {
+    else if ((botao_evento == 5) || ((estado == PRONTO) && (!timer))) {
         codigoEvento = BOTAO_TIMER; 
     }
 
@@ -72,22 +73,22 @@ void taskObterEvento() {
     else if ((estado != FIM ) && acaba_tempo()) {
         codigoEvento = ACABA_TEMPO; 
     }
-    else if ((estadoSalvo == TURNO) && (botao.Botao() == 4 )) {
+    else if ((estadoSalvo == TURNO) && (botao_evento == 4 )) {
         codigoEvento = LEFT_T; 
     }
-    else if ((estadoSalvo == JOGADA) && (botao.Botao() == 4 )) {
+    else if ((estadoSalvo == JOGADA) && (botao_evento == 4 )) {
         codigoEvento = LEFT_J; 
     }
-    else if ((estadoSalvo == ILEGAL) && (botao.Botao() == 4 )) {
+    else if ((estadoSalvo == ILEGAL) && (botao_evento == 4 )) {
         codigoEvento = LEFT_I; 
     }
-    else if ((estadoSalvo == VERIFICACAO) && (botao.Botao() == 4 )) {
+    else if ((estadoSalvo == VERIFICACAO) && (botao_evento == 4 )) {
         codigoEvento = LEFT_V; 
     }
-    else if ((botao.Botao() == 1 && tela.contador_vertical_fim == 0 && estado == FIM)) {
+    else if ((botao_evento == 1 && tela.contador_vertical_fim == 0 && estado == FIM)) {
         codigoEvento = RIGHT_JOGAR_NOVAMENTE; 
     }
-    else if ((botao.Botao() == 1 && tela.contador_vertical_fim == 1 && estado == FIM)) {
+    else if ((botao_evento == 1 && tela.contador_vertical_fim == 1 && estado == FIM)) {
         codigoEvento = RIGHT_MENU_PRINCIPAL; 
     }
     else {
