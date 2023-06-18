@@ -1,4 +1,6 @@
-int getButton(){
+Button::Button(){}
+
+int Button::getButton(){
 /*
 Função que separa o botão analógico nas diferentes faixas de valor
 */
@@ -23,7 +25,7 @@ Função que separa o botão analógico nas diferentes faixas de valor
   return button;
 }
 
-int Botao(){
+int Button::Botao(){
 /*
 Debounce do botao
 */

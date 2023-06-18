@@ -3,6 +3,38 @@
 #include "botao.h"
 #include "jogo.h"
 
+void taskAtualizaTempo(){
+  if (contando_tempo){
+    desconta_tempo();   
+    min_MARROM = (int)(tempo_MARROM/60000);
+    seg_MARROM = (int)((tempo_MARROM%60000) / 1000 );
+    min_BRANCO = (int)(tempo_BRANCO/60000);
+    seg_BRANCO = (int)((tempo_BRANCO%60000) / 1000 );
+    lcd.setCursor(0,0);
+    lcd.print("M: " + String(padZero(min_MARROM)) + ":" + String(padZero(seg_MARROM)));
+    lcd.setCursor(0,1);
+    lcd.print("B: " + String(padZero(min_BRANCO)) + ":" + String(padZero(seg_BRANCO)));
+  }
+}
+
+void inicializa_tempos(){
+  if (game == CHEESE_5){
+    tempo_MARROM = TEMPO_5;
+    tempo_BRANCO = TEMPO_5;
+    return;
+  }
+  if (game == CHEESE_10){
+    tempo_MARROM = TEMPO_10;
+    tempo_BRANCO = TEMPO_10;
+    return;
+  }
+  if (game == CHEESE_15){
+    tempo_MARROM = TEMPO_15;
+    tempo_BRANCO = TEMPO_15;
+    return;
+  }
+}
+
 void desconta_tempo(){
 /*
 
@@ -22,11 +54,11 @@ bool acaba_tempo(){
 
 */
 
-  if (tempo_MARROM == 0 || tempo_MARROM >= 6000000){
+  if (tempo_MARROM <= 0){
     jogador_vencedor = BRANCO;
     contando_tempo = false;
     return true;
-  } else if (tempo_BRANCO == 0 || tempo_BRANCO >= 6000000){
+  } else if (tempo_BRANCO <= 0){
     jogador_vencedor = MARROM;
     contando_tempo = false;
     return true;

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "jogo.h"
 #include "maquina_estados.h"
-#include "timer.h"
+#include "hall.h"
 
 void preenche_cor(int jogador){
 /*
@@ -31,11 +31,11 @@ bool peca_pronta(){
 Indica que todas as peças estão posicionadas na posição inicial
 */
 
-  le_sensores();
+  hall.le_sensores();
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
-      if (sensores[i][j] != tabuleiro_inicial_cheese[i][j]) return false;
+      if (hall.sensores[i][j] != tabuleiro_inicial_cheese[i][j]) return false;
     }
   }
   return true;
@@ -50,15 +50,15 @@ Indica que uma peça foi levantada
   int tabuleiro_antigo[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
-      tabuleiro_antigo[i][j] = sensores[i][j];
+      tabuleiro_antigo[i][j] = hall.sensores[i][j];
     }
   }
 
-  le_sensores();
+  hall.le_sensores();
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
-      if (sensores[i][j] != tabuleiro_antigo[i][j]){
+      if (hall.sensores[i][j] != tabuleiro_antigo[i][j]){
         peca_levantada.x = i;
         peca_levantada.y = j;
         return true;
@@ -77,15 +77,15 @@ Indica que uma peça foi posta no tabuleiro
   int tabuleiro_antigo[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
-      tabuleiro_antigo[i][j] = sensores[i][j];
+      tabuleiro_antigo[i][j] = hall.sensores[i][j];
     }
   }
 
-  le_sensores();
+  hall.le_sensores();
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
-      if (sensores[i][j] != tabuleiro_antigo[i][j]){
+      if (hall.sensores[i][j] != tabuleiro_antigo[i][j]){
         casa_escolhida.x = i;
         casa_escolhida.y = j;
         return true;
@@ -328,14 +328,6 @@ Também atualiza a matriz do jogo caso a jogada seja legal
   acha_ratos_marrons();
   acha_ratos_brancos();
 
-  // if (neutron && !timer){
-  //   return LEGAL_ULTIMO;
-  // } else if (neutron && timer){
-  //   return VERIFICACAO; // ainda tem que esperar o botao timer
-  // } else if (!neutron){
-  //   return LEGAL_nULTIMO;
-  // }
-
   return cheese ? LEGAL_ULTIMO : LEGAL_nULTIMO ;
 
 }
@@ -347,12 +339,12 @@ Função que percebe se uma jogada ilegal foi refeita as condições originais
 */
 
   acende_casas_ilegais();
-  le_sensores();
+  hall.le_sensores();
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
       if (tabuleiro_cheese[i][j] == 0){
-        if (sensores[i][j] != tabuleiro_cheese[i][j]){
+        if (hall.sensores[i][j] != tabuleiro_cheese[i][j]){
           return NENHUM_EVENTO;
         }
       }

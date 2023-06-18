@@ -22,9 +22,12 @@
 #define TASK_INTERVAL1 100
 #define TASK_INTERVAL2 100
 #define TASK_INTERVAL3 10
+#define TASK_INTERVAL4 10
 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 SoftwareSerial bt(tx, rx); //Rx Tx
+Hall hall;
+Button botao;
 
 
 void setup() {
@@ -32,6 +35,7 @@ void setup() {
   TaskController.createTask(&taskMaqEstados, TASK_INTERVAL1);
   TaskController.createTask(&taskObterEvento, TASK_INTERVAL2);
   TaskController.createTask(&taskImprimeMatriz, TASK_INTERVAL3);
+  TaskController.createTask(&taskAtualizaTempo, TASK_INTERVAL4);
 
   TaskController.begin(1000);
 
@@ -45,7 +49,7 @@ void setup() {
   // make the pushbutton's pin an input:
 
 
-  inicializa_pinos();
+  hall.inicializa_pinos();
 
   FastLED.addLeds<WS2812B, LED_PIN_1, COLOR_ORDER>(leds0, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<WS2812B, LED_PIN_2, COLOR_ORDER>(leds1, NUM_LEDS).setCorrection(TypicalLEDStrip);

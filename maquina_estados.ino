@@ -33,29 +33,30 @@ void taskMaqEstados() {
 
 void taskObterEvento() {
 
-    if (Botao() == 1 && (estado == IDLE)) {
+    if (botao.Botao() == 1 && (estado == IDLE)) {
         codigoEvento = RIGHT_ESCOLHE_MODO;
     }
 
-    else if (Botao() == 1 && (estado == EMPATE)) {
+    else if (botao.Botao() == 1 && (estado == EMPATE)) {
       codigoEvento = RIGHT_ESCOLHE_MODO;
     }
 
-    else if (Botao() == 2) {
+    else if (botao.Botao() == 2) {
         codigoEvento = UP;
     }
-    else if (Botao() == 3) {
+    else if (botao.Botao() == 3) {
         codigoEvento = DOWN; 
     }
-    else if ((Botao() == 4 && ((estado == MODOS_DE_JOGO) || (estado == TURNO) || (estado == JOGADA) || (estado == VERIFICACAO) || (estado == ILEGAL) ))) {
+    else if ((botao.Botao() == 4 && ((estado == MODOS_DE_JOGO) || (estado == TURNO) || (estado == JOGADA) || (estado == VERIFICACAO) || (estado == ILEGAL) ))) {
         codigoEvento = LEFT; 
     }
     else if ((estado == MODOS_DE_JOGO) && peca_pronta()) {
         codigoEvento = POSICIONAMENTO_DAS_PECAS; 
     }
-    else if (Botao() == 5) {
+    else if ((botao.Botao() == 5) || ((estado == PRONTO) && (!timer))) {
         codigoEvento = BOTAO_TIMER; 
     }
+
     else if ((estado == TURNO) && peca_levantou()) {
         codigoEvento = LEVANTA_PECA; 
     }
@@ -71,22 +72,22 @@ void taskObterEvento() {
     else if ((estado != FIM ) && acaba_tempo()) {
         codigoEvento = ACABA_TEMPO; 
     }
-    else if ((estadoSalvo == TURNO) && (Botao() == 4 )) {
+    else if ((estadoSalvo == TURNO) && (botao.Botao() == 4 )) {
         codigoEvento = LEFT_T; 
     }
-    else if ((estadoSalvo == JOGADA) && (Botao() == 4 )) {
+    else if ((estadoSalvo == JOGADA) && (botao.Botao() == 4 )) {
         codigoEvento = LEFT_J; 
     }
-    else if ((estadoSalvo == ILEGAL) && (Botao() == 4 )) {
+    else if ((estadoSalvo == ILEGAL) && (botao.Botao() == 4 )) {
         codigoEvento = LEFT_I; 
     }
-    else if ((estadoSalvo == VERIFICACAO) && (Botao() == 4 )) {
+    else if ((estadoSalvo == VERIFICACAO) && (botao.Botao() == 4 )) {
         codigoEvento = LEFT_V; 
     }
-    else if ((Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
+    else if ((botao.Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
         codigoEvento = RIGHT_JOGAR_NOVAMENTE; 
     }
-    else if ((Botao() == 1 && contador_vertical_fim == 1 && estado == FIM)) {
+    else if ((botao.Botao() == 1 && contador_vertical_fim == 1 && estado == FIM)) {
         codigoEvento = RIGHT_MENU_PRINCIPAL; 
     }
     else {
@@ -128,10 +129,7 @@ int executarAcao(int codigoAcao) {
       lcd.print("Boa partida");
       lcd.setCursor(0,1);
       jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
-      if (timer){
-        tempo_MARROM = TEMPO_POR_JOGADOR;
-        tempo_BRANCO = TEMPO_POR_JOGADOR;
-      }
+      if (timer) inicializa_tempos();
       Serial.println("A05");
       break;
     case A06:
@@ -176,8 +174,10 @@ int executarAcao(int codigoAcao) {
       preenche_cor(jogador_vencedor);
       lcd_vitoria_derrota();
       animacao_vencedor();
-      tempo_MARROM = TEMPO_POR_JOGADOR;
-      tempo_BRANCO = TEMPO_POR_JOGADOR;
+      if (timer){
+        contando_tempo = false;
+        inicializa_tempos();
+      } 
       lcd_menu_UP();
       Serial.println("A12");
       break;
@@ -185,7 +185,6 @@ int executarAcao(int codigoAcao) {
       Serial.println("A13");
       estadoSalvo = estado;
       animacao_vez_do_jogador();
-      
       break;
     case A14:
       Serial.println("A14");
@@ -195,12 +194,13 @@ int executarAcao(int codigoAcao) {
     case A15:
       lcd_acaba_tempo();
       preenche_cor(jogador_vencedor);
-      tempo_MARROM = TEMPO_POR_JOGADOR;
-      tempo_BRANCO = TEMPO_POR_JOGADOR;
+      animacao_vencedor();
+      inicializa_tempos();
       lcd_menu_UP();
       Serial.println("A15");
       break;
     case A16:
+      contando_tempo = false;
       lcd_empate();
       Serial.println("A16");
       break;
@@ -215,6 +215,10 @@ int executarAcao(int codigoAcao) {
     case A18:
       Serial.println("A18");
       lcd.clear();
+      if (timer) {
+        contando_tempo = true;
+        comeco_intervalo = millis(); 
+      }
       break;
     case A19:
       Serial.println("A19");
