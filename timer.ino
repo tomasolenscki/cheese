@@ -11,9 +11,9 @@ void taskAtualizaTempo(){
     min_BRANCO = (int)(tempo_BRANCO/60000);
     seg_BRANCO = (int)((tempo_BRANCO%60000) / 1000 );
     lcd.setCursor(0,0);
-    lcd.print("M: " + String(padZero(min_MARROM)) + ":" + String(padZero(seg_MARROM)));
+    lcd.print("M: " + String(tela.padZero(min_MARROM)) + ":" + String(tela.padZero(seg_MARROM)));
     lcd.setCursor(0,1);
-    lcd.print("B: " + String(padZero(min_BRANCO)) + ":" + String(padZero(seg_BRANCO)));
+    lcd.print("B: " + String(tela.padZero(min_BRANCO)) + ":" + String(tela.padZero(seg_BRANCO)));
   }
 }
 

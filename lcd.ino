@@ -4,7 +4,9 @@
 #include "timer.h"
 #include "jogo.h"
 
-void lcd_menu_principal(){
+LCD::LCD(){}
+
+void LCD::menu_principal(){
 /*
 Função que exibe a mensagem do menu principal no LCD
 */
@@ -15,7 +17,7 @@ Função que exibe a mensagem do menu principal no LCD
   lcd.print("UP ou DOWN");
 }
 
-void lcd_menu_UP(){
+void LCD::menu_UP(){
 /*
 Função que cicla entre as opções dos menus para cima
 */
@@ -44,7 +46,7 @@ Função que cicla entre as opções dos menus para cima
   }
 }
 
-void lcd_menu_DOWN(){
+void LCD::menu_DOWN(){
 /*
 Função que cicla entre as opções dos menus para baixo
 */
@@ -74,7 +76,7 @@ Função que cicla entre as opções dos menus para baixo
   }
 }
 
-void lcd_menu_RIGHT_mdj(){
+void LCD::menu_RIGHT_mdj(){
 /*
 Função que mostra o modo de jogo selecionado e confirma a seleção
 */
@@ -104,7 +106,7 @@ Função que mostra o modo de jogo selecionado e confirma a seleção
   lcd.print("Posic. as pecas:");
 }
 
-void lcd_menu_RIGHT_fim(){
+void LCD::menu_RIGHT_fim(){
 /*
 Função que mostra a opção de fim selecionada e confirma a seleção
 */
@@ -122,7 +124,7 @@ Função que mostra a opção de fim selecionada e confirma a seleção
   }
 }
 
-void lcd_vitoria_derrota(){
+void LCD::vitoria_derrota(){
 /*
 Função que mostra mensagem de vitória
 */
@@ -136,7 +138,7 @@ Função que mostra mensagem de vitória
     lcd.print("BRANCO VENCEU");
 }
 
-void lcd_acaba_tempo(){
+void LCD::acaba_tempo(){
 /*
 função que mostra o fim do tempo e qual rato venceu
 */
@@ -150,17 +152,19 @@ função que mostra o fim do tempo e qual rato venceu
     lcd.print("BRANCO VENCEU");
 }
 
-void lcd_empate(){
+void LCD::empate(){
 /*
 Função para declarar empate
 */
 
   lcd.clear();
   lcd.print("Empate?");
+  lcd.setCursor(0, 1);
+  lcd.print("nao     sim    ");
 
 }
 
-String padZero(int valor) {
+String LCD::padZero(int valor) {
 /*
 Função para manter numeros com 2 digitos independentemente do valor
 */

@@ -84,10 +84,10 @@ void taskObterEvento() {
     else if ((estadoSalvo == VERIFICACAO) && (botao.Botao() == 4 )) {
         codigoEvento = LEFT_V; 
     }
-    else if ((botao.Botao() == 1 && contador_vertical_fim == 0 && estado == FIM)) {
+    else if ((botao.Botao() == 1 && tela.contador_vertical_fim == 0 && estado == FIM)) {
         codigoEvento = RIGHT_JOGAR_NOVAMENTE; 
     }
-    else if ((botao.Botao() == 1 && contador_vertical_fim == 1 && estado == FIM)) {
+    else if ((botao.Botao() == 1 && tela.contador_vertical_fim == 1 && estado == FIM)) {
         codigoEvento = RIGHT_MENU_PRINCIPAL; 
     }
     else {
@@ -104,22 +104,22 @@ int executarAcao(int codigoAcao) {
     {
     case A01:
       Serial.println("A01");
-      lcd_menu_UP();
+      tela.menu_UP();
       break;
     case A02:
       Serial.println("A02");
-      lcd_menu_DOWN();
+      tela.menu_DOWN();
       break;
     case A03:
       Serial.println("A03");
-      lcd_menu_RIGHT_mdj();
+      tela.menu_RIGHT_mdj();
       reinicia_tabuleiro_cheese();
       inicial_cheese();
       break;
     case A04:
       Serial.println("A04");
       acende_todos_os_leds(rgb_apagado);
-      lcd_menu_principal();
+      tela.menu_principal();
       break;
     case A05:
       lcd.clear();
@@ -172,13 +172,13 @@ int executarAcao(int codigoAcao) {
       break;
     case A12:
       preenche_cor(jogador_vencedor);
-      lcd_vitoria_derrota();
+      tela.vitoria_derrota();
       animacao_vencedor();
       if (timer){
         contando_tempo = false;
         inicializa_tempos();
       } 
-      lcd_menu_UP();
+      tela.menu_UP();
       Serial.println("A12");
       break;
     case A13:
@@ -192,25 +192,25 @@ int executarAcao(int codigoAcao) {
       animacao_vez_do_jogador();
       break;
     case A15:
-      lcd_acaba_tempo();
+      tela.acaba_tempo();
       preenche_cor(jogador_vencedor);
       animacao_vencedor();
       inicializa_tempos();
-      lcd_menu_UP();
+      tela.menu_UP();
       Serial.println("A15");
       break;
     case A16:
       contando_tempo = false;
-      lcd_empate();
+      tela.empate();
       Serial.println("A16");
       break;
     case A17:
       Serial.println("A17");
       preenche_cor(3);
-      contador_vertical_fim = 0;
-      lcd_menu_RIGHT_fim();
+      tela.contador_vertical_fim = 0;
+      tela.menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
-      lcd_menu_principal();
+      tela.menu_principal();
       break;
     case A18:
       Serial.println("A18");
@@ -222,16 +222,16 @@ int executarAcao(int codigoAcao) {
       break;
     case A19:
       Serial.println("A19");
-      lcd_menu_RIGHT_fim();
+      tela.menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
       inicial_cheese();
       break;
     case A20:
       Serial.println("A20");
-      contador_vertical_fim = 0;
-      lcd_menu_RIGHT_fim();
+      tela.contador_vertical_fim = 0;
+      tela.menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
-      lcd_menu_principal();
+      tela.menu_principal();
       break;
     }
 

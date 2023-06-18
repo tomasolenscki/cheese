@@ -28,6 +28,7 @@ LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 SoftwareSerial bt(tx, rx); //Rx Tx
 Hall hall;
 Button botao;
+LCD tela;
 
 
 void setup() {
@@ -43,7 +44,7 @@ void setup() {
   Serial.begin(9600);
   bt.begin(9600);
   lcd.begin(16,2);
-  lcd_menu_principal();
+  tela.menu_principal();
   delay(2000);
   Serial.println("Maquina de Estados iniciada");
   // make the pushbutton's pin an input:

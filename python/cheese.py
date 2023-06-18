@@ -4,7 +4,7 @@ import serial
 
 bluetoothSerial = serial.Serial(port='COM10', baudrate=9600, timeout=0)
 
-def transforma_lixo(a):
+def transforma_matriz(a):
     matriz = []
     colunas = []
     colunas = a.split('<')[1].split('>')[0].split(' ')
@@ -62,7 +62,7 @@ while True:
     if data:
         string = data.decode('ascii')
     
-    tabuleiro = transforma_lixo(string)
+    tabuleiro = transforma_matriz(string)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
