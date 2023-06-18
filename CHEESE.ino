@@ -39,7 +39,7 @@ void setup() {
   Serial.begin(9600);
   bt.begin(9600);
   lcd.begin(16,2);
-  lcd.clear();
+  lcd_menu_principal();
   delay(2000);
   Serial.println("Maquina de Estados iniciada");
   // make the pushbutton's pin an input:

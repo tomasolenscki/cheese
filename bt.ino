@@ -2,6 +2,10 @@
 #include "bt.h"
 
 void taskImprimeMatriz(){
+/*
+Função que envia a matriz do jogo via bluetooth
+*/
+
   bt.print("<"); // inicio do array
   for(int i = 0; i < 5; i++)
   {

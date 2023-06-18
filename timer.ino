@@ -4,6 +4,10 @@
 #include "jogo.h"
 
 void desconta_tempo(){
+/*
+
+*/
+
   tempo_atual = millis();
   if (jogador_da_vez == MARROM){
     tempo_MARROM -= tempo_atual - comeco_intervalo;
@@ -14,6 +18,10 @@ void desconta_tempo(){
 }
 
 bool acaba_tempo(){
+/*
+
+*/
+
   if (tempo_MARROM == 0 || tempo_MARROM >= 6000000){
     jogador_vencedor = BRANCO;
     contando_tempo = false;

@@ -4,6 +4,10 @@
 #include "timer.h"
 
 void preenche_cor(int jogador){
+/*
+Função que preenche o tabuleiro com a cor de um jogador
+Funciona como animação de vitória para o bluetooth
+*/
   
   if (jogador == MARROM){
    for(int i=0; i<=4; i++){
@@ -23,6 +27,9 @@ void preenche_cor(int jogador){
 }
 
 bool peca_pronta(){
+/*
+Indica que todas as peças estão posicionadas na posição inicial
+*/
 
   le_sensores();
 
@@ -36,6 +43,9 @@ bool peca_pronta(){
 }
 
 bool peca_levantou(){
+/*
+Indica que uma peça foi levantada
+*/
 
   int tabuleiro_antigo[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
   for(int i=0; i<=4; i++){
@@ -60,6 +70,9 @@ bool peca_levantou(){
 }
 
 bool peca_abaixou(){
+/*
+Indica que uma peça foi posta no tabuleiro
+*/
 
   int tabuleiro_antigo[5][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
   for(int i=0; i<=4; i++){
@@ -84,6 +97,9 @@ bool peca_abaixou(){
 }
 
 void reinicia_tabuleiro_cheese(){
+/*
+Volta a matriz de tabuleiro à função original
+*/
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
@@ -97,6 +113,9 @@ void reinicia_tabuleiro_cheese(){
 }
 
 int possible_moves() {
+/*
+Função que calcula os movimentos possíveis para uma peça no tabuleiro
+*/
 
   int num_moves = 0;
   int x = peca_levantada.x;
@@ -129,6 +148,10 @@ int possible_moves() {
 }
 
 bool cheese_preso() {
+/*
+Função que verifica se o cheese não pode mais se mexer
+*/
+
   acha_cheese();
   int num_moves = 0;
   int x = pos_cheese.x;
@@ -160,13 +183,13 @@ bool cheese_preso() {
 }
 
 bool verifica_jogador_cheese(){
-  // Serial.println("verificou_jogador");
+/*
+Função que verifica se a peça levantada foi do jogador da vez
+*/
+
   int x_inicio = peca_levantada.x;
   int y_inicio = peca_levantada.y;
-  // Serial.println(x_inicio);
-  // Serial.println(y_inicio);
-  // Serial.println(tabuleiro_cheese[x_inicio][y_inicio]);
-  // Serial.println(jogador_da_vez); 
+
   if (((tabuleiro_cheese[x_inicio][y_inicio] == jogador_da_vez) && (cheese == false)) || ((tabuleiro_cheese[x_inicio][y_inicio] == NEUTRON) && (cheese == true))){
     return true;
   }
@@ -174,6 +197,9 @@ bool verifica_jogador_cheese(){
 }
 
 void acha_cheese(){
+/*
+Função para encontrar as coordenadas x e y do cheese
+*/
 
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
@@ -187,6 +213,10 @@ void acha_cheese(){
 }
 
 int acha_ratos_brancos(){
+/*
+Função para achar as coordenadas dos 5 ratos brancos
+*/
+
   int cont = 0;
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
@@ -204,6 +234,10 @@ int acha_ratos_brancos(){
 }
 
 int acha_ratos_marrons(){
+/*
+Função para achar as coordenadas dos 5 ratos marrons
+*/
+
   int cont = 0;
   for(int i=0; i<=4; i++){
     for(int j=0; j<=4; j++){
@@ -221,7 +255,9 @@ int acha_ratos_marrons(){
 }
 
 bool verifica_casa_escolhida(int x_fim, int y_fim){
-  // Serial.println("verificou_casa");
+/*
+Função que verifica se a casa escolhida para uma jogada é ou não legal
+*/
 
   bool esta_na_lista = false;
   int x, y;
@@ -239,6 +275,11 @@ bool verifica_casa_escolhida(int x_fim, int y_fim){
 }  
 
 int verifica_jogada(){
+/*
+Função que verifica se uma jogada é legal ou não
+Ela separa as diferentes possibilidades de jogada nos seus respectivos eventos internos
+Também atualiza a matriz do jogo caso a jogada seja legal
+*/
 
   int x_inicio = peca_levantada.x;
   int y_inicio = peca_levantada.y;
@@ -301,9 +342,11 @@ int verifica_jogada(){
 
 
 int trata_peca_ilegal(){
+/*
+Função que percebe se uma jogada ilegal foi refeita as condições originais
+*/
 
   acende_casas_ilegais();
-
   le_sensores();
 
   for(int i=0; i<=4; i++){

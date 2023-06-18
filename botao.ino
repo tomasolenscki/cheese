@@ -1,4 +1,7 @@
 int getButton(){
+/*
+Função que separa o botão analógico nas diferentes faixas de valor
+*/
 
   int button;
   int i, z, sum;
@@ -21,6 +24,9 @@ int getButton(){
 }
 
 int Botao(){
+/*
+Debounce do botao
+*/
 
   int button, button2, pressed_button;
 

@@ -178,6 +178,7 @@ int executarAcao(int codigoAcao) {
       animacao_vencedor();
       tempo_MARROM = TEMPO_POR_JOGADOR;
       tempo_BRANCO = TEMPO_POR_JOGADOR;
+      lcd_menu_UP();
       Serial.println("A12");
       break;
     case A13:
@@ -196,6 +197,7 @@ int executarAcao(int codigoAcao) {
       preenche_cor(jogador_vencedor);
       tempo_MARROM = TEMPO_POR_JOGADOR;
       tempo_BRANCO = TEMPO_POR_JOGADOR;
+      lcd_menu_UP();
       Serial.println("A15");
       break;
     case A16:
@@ -208,6 +210,7 @@ int executarAcao(int codigoAcao) {
       contador_vertical_fim = 0;
       lcd_menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
+      lcd_menu_principal();
       break;
     case A18:
       Serial.println("A18");
@@ -224,6 +227,7 @@ int executarAcao(int codigoAcao) {
       contador_vertical_fim = 0;
       lcd_menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
+      lcd_menu_principal();
       break;
     }
 

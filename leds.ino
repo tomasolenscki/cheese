@@ -2,6 +2,10 @@
 #include "leds.h"
 
 void acende_todos_os_leds(CRGB cor){
+/*
+Função que acende todos os leds com a cor especificada.
+Pode também apagar todos os leds caso a cor seja (0, 0, 0)
+*/
 
   for(int i=0; i<=4; i++){
       for(int j=0; j<=4; j++){
@@ -31,6 +35,10 @@ void acende_todos_os_leds(CRGB cor){
 }
 
 void inicial_cheese(){
+/*
+Função que acende as casas iniciasi do jogo cheese
+*/
+
   for(int i=0; i<=4; i++){
     leds0[i] = rgb_vermelho_claro;
     leds4[i] = rgb_vermelho_claro;
@@ -42,6 +50,11 @@ void inicial_cheese(){
 }
 
 void acende_possiveis_jogadas(){
+/*
+Função que acende as possíveis jogadas de um rato
+As possíveis jogadas são acessas em verde e a casa atual em amarelo
+*/
+
   int x = peca_levantada.x;
   int y = peca_levantada.y;
   int numero_de_movimentos = 0;
@@ -92,6 +105,11 @@ void acende_possiveis_jogadas(){
 }
 
 void acende_casas_ilegais(){
+/*
+Função que acende as casas quando um movimento ilegal é realizado
+A casa posta incorreta é acessa em vermelho escuro 
+A casa original do rato é acessa em vermelho claro
+*/
 
   int x = peca_levantada.x;
   int y = peca_levantada.y;
@@ -138,6 +156,10 @@ void acende_casas_ilegais(){
 }
 
 void animacao_vez_do_jogador(){
+/*
+Animação com os LEDs que indica a vez de um dos jogadores
+*/
+
   int x, y;
   if (cheese) {
     x = pos_cheese.x;
@@ -250,6 +272,10 @@ void animacao_vez_do_jogador(){
 }
 
 void animacao_inicio(){
+/*
+Animação do início do jogo
+*/
+
   int x, y;
   leds2[2] = rgb_azul;
   FastLED.show();
@@ -293,6 +319,10 @@ void animacao_inicio(){
 
 
 void animacao_vencedor(){
+/*
+Animação do vencedor do jogo
+*/
+
   if (jogador_vencedor == BRANCO){
     for (int x = 0; x <= 4; x++) {
       for (int y = 0; y <= 4 ; y++) {
@@ -489,6 +519,10 @@ void animacao_vencedor(){
 
 
 bool verificarPosicaoEncontradaBranco(int x, int y) {
+/*
+Função que verifica se algum rato branco esta em uma posição do tabuleiro
+*/
+
   for (int i = 0; i < 5; i++) {
     if (pos_ratos_brancos[i].x == x && pos_ratos_brancos[i].y == y) {
       return true;
@@ -498,6 +532,10 @@ bool verificarPosicaoEncontradaBranco(int x, int y) {
 }
 
 bool verificarPosicaoEncontradaMarrom(int x, int y) {
+/*
+Função que verifica se algum rato marrom esta em uma posição do tabuleiro
+*/
+
   for (int i = 0; i < 5; i++) {
     if (pos_ratos_marrons[i].x == x && pos_ratos_marrons[i].y == y) {
       return true;

@@ -11,16 +11,16 @@ int      status;
 } TaskControl;
 
 class TaskSwitcher {
-    public:
-    TaskSwitcher();
-    void begin(long timerInterruptInuSecs);
-    void createTask(void (*t)(), long interval);
-    void runCurrentTask();
-    void updateTickCounter();
+  public:
+  TaskSwitcher();
+  void begin(long timerInterruptInuSecs);
+  void createTask(void (*t)(), long interval);
+  void runCurrentTask();
+  void updateTickCounter();
 
-    private:
-    TaskControl taskList[MAX_TAREFAS];
-    int taskCount;
+  private:
+  TaskControl taskList[MAX_TAREFAS];
+  int taskCount;
 };
 
 extern TaskSwitcher TaskController;

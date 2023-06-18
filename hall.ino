@@ -4,6 +4,9 @@
 
 
 void le_sensores(){
+/*
+Função que lê todos os sensores do tabuleiro e armazena o valor de todas as leituras
+*/
 
   for(int i = 0; i<=4; i++){
     for(int j=4;j>=0;j--){
@@ -14,6 +17,9 @@ void le_sensores(){
 }
 
 void inicializa_pinos(){
+/*
+Função para inicializar os pinos dos sensores hall
+*/
 
   for(int i=0; i<=4; i++){
     for(int j=4; j>=0; j--){
