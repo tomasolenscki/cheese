@@ -5,21 +5,30 @@
 #define TEMPO_10 600000 // 10 min para cada jogador
 #define TEMPO_15 900000 // 15 min para cada jogador
 
+class Timer{
+  public:
+  Timer();
+  bool timer = false;
+  bool contando_tempo = false;
+  long tempo_MARROM = 2311;
+  long tempo_BRANCO = 2211;
+  unsigned long comeco_intervalo;
+  void inicializa_tempos();
+  bool acaba_tempo();
+    void desconta_tempo();
 
-long tempo_MARROM = 2311;
+  private:
+  unsigned long tempo_atual;
+
+};
+
 int min_MARROM;
 int seg_MARROM;
-long tempo_BRANCO = 2211;
 int min_BRANCO;
 int seg_BRANCO;
-unsigned long comeco_intervalo;
-unsigned long tempo_atual;
-bool timer = false;
-bool contando_tempo = false;
+
 
 void taskAtualizaTempo();
-void inicializa_tempos();
-void desconta_tempo();
-bool acaba_tempo();
+
 
 #endif // TIMER_H_INCLUDED

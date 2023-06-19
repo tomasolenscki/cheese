@@ -85,19 +85,19 @@ Função que mostra o modo de jogo selecionado e confirma a seleção
   switch (contador_vertical_mdj){
     case (0):
       jogo.game = CHEESE;
-      timer = false;
+      timer.timer = false;
     break;
     case (1):
       jogo.game = CHEESE_5;
-      timer = true;
+      timer.timer = true;
     break;
     case (2):
       jogo.game = CHEESE_10;
-      timer = true;
+      timer.timer = true;
     break;
     case (3):
       jogo.game = CHEESE_15;
-      timer = true;
+      timer.timer = true;
     break;
   }
   lcd.clear();

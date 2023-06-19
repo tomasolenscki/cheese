@@ -54,7 +54,7 @@ void taskObterEvento() {
     else if ((estado == MODOS_DE_JOGO) && jogo.peca_pronta()) {
         codigoEvento = POSICIONAMENTO_DAS_PECAS; 
     }
-    else if ((botao_evento == 5) || ((estado == PRONTO) && (!timer))) {
+    else if ((botao_evento == 5) || ((estado == PRONTO) && (!timer.timer))) {
         codigoEvento = BOTAO_TIMER; 
     }
 
@@ -70,7 +70,7 @@ void taskObterEvento() {
         codigoEvento = LEVANTA_PECA_ILEGAL; 
     }
 
-    else if ((estado != FIM ) && acaba_tempo()) {
+    else if ((estado != FIM ) && timer.acaba_tempo()) {
         codigoEvento = ACABA_TEMPO; 
     }
     else if ((estadoSalvo == TURNO) && (botao_evento == 4 )) {
@@ -130,7 +130,7 @@ int executarAcao(int codigoAcao) {
       lcd.print("Boa partida");
       lcd.setCursor(0,1);
       jogo.jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
-      if (timer) inicializa_tempos();
+      if (timer.timer) timer.inicializa_tempos();
       Serial.println("A05");
       break;
     case A06:
@@ -141,9 +141,9 @@ int executarAcao(int codigoAcao) {
       jogo.acha_ratos_brancos();
       leds.animacao_vez_do_jogador();
       estadoSalvo = estado;
-      if (timer){
-        comeco_intervalo = millis();
-        contando_tempo = true;
+      if (timer.timer){
+        timer.comeco_intervalo = millis();
+        timer.contando_tempo = true;
       }
       break;
     case A07:
@@ -175,9 +175,9 @@ int executarAcao(int codigoAcao) {
       jogo.preenche_cor(jogo.jogador_vencedor);
       tela.vitoria_derrota();
       leds.animacao_vencedor();
-      if (timer){
-        contando_tempo = false;
-        inicializa_tempos();
+      if (timer.timer){
+        timer.contando_tempo = false;
+        timer.inicializa_tempos();
       } 
       tela.menu_UP();
       Serial.println("A12");
@@ -196,12 +196,12 @@ int executarAcao(int codigoAcao) {
       tela.acaba_tempo();
       jogo.preenche_cor(jogo.jogador_vencedor);
       leds.animacao_vencedor();
-      inicializa_tempos();
+      timer.inicializa_tempos();
       tela.menu_UP();
       Serial.println("A15");
       break;
     case A16:
-      contando_tempo = false;
+      timer.contando_tempo = false;
       tela.empate();
       Serial.println("A16");
       break;
@@ -216,9 +216,9 @@ int executarAcao(int codigoAcao) {
     case A18:
       Serial.println("A18");
       lcd.clear();
-      if (timer) {
-        contando_tempo = true;
-        comeco_intervalo = millis(); 
+      if (timer.timer) {
+        timer.contando_tempo = true;
+        timer.comeco_intervalo = millis(); 
       }
       break;
     case A19:

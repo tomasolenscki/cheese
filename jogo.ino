@@ -303,7 +303,7 @@ Também atualiza a matriz do jogo caso a jogada seja legal
   }
 
   if (cheese && ((x_fim == 0 ) || (x_fim==4))) {
-    contando_tempo = false;
+    timer.contando_tempo = false;
     jogador_vencedor = (x_fim == 0 ) ? MARROM : BRANCO;
     return VITORIA_DERROTA;
   }
@@ -312,7 +312,7 @@ Também atualiza a matriz do jogo caso a jogada seja legal
   tabuleiro_cheese[x_fim][y_fim] = cheese ? NEUTRON : jogador_da_vez;
 
   if (cheese_preso()){
-    contando_tempo = false;
+    timer.contando_tempo = false;
     jogador_vencedor = jogador_da_vez;
     return VITORIA_DERROTA;
   }

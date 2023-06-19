@@ -4,12 +4,12 @@
 #include "jogo.h"
 
 void taskAtualizaTempo(){
-  if (contando_tempo){
-    desconta_tempo();   
-    min_MARROM = (int)(tempo_MARROM/60000);
-    seg_MARROM = (int)((tempo_MARROM%60000) / 1000 );
-    min_BRANCO = (int)(tempo_BRANCO/60000);
-    seg_BRANCO = (int)((tempo_BRANCO%60000) / 1000 );
+  if (timer.contando_tempo){
+    timer.desconta_tempo();   
+    min_MARROM = (int)(timer.tempo_MARROM/60000);
+    seg_MARROM = (int)((timer.tempo_MARROM%60000) / 1000 );
+    min_BRANCO = (int)(timer.tempo_BRANCO/60000);
+    seg_BRANCO = (int)((timer.tempo_BRANCO%60000) / 1000 );
     lcd.setCursor(0,0);
     lcd.print("M: " + String(padZero(min_MARROM)) + ":" + String(padZero(seg_MARROM)));
     lcd.setCursor(0,1);
@@ -17,7 +17,9 @@ void taskAtualizaTempo(){
   }
 }
 
-void inicializa_tempos(){
+Timer::Timer(){}
+
+void Timer::inicializa_tempos(){
   if (jogo.game == CHEESE_5){
     tempo_MARROM = TEMPO_5;
     tempo_BRANCO = TEMPO_5;
@@ -35,7 +37,7 @@ void inicializa_tempos(){
   }
 }
 
-void desconta_tempo(){
+void Timer::desconta_tempo(){
 /*
 
 */
@@ -49,7 +51,7 @@ void desconta_tempo(){
   comeco_intervalo = tempo_atual; // atualiza novo comeco de intervalo
 }
 
-bool acaba_tempo(){
+bool Timer::acaba_tempo(){
 /*
 
 */

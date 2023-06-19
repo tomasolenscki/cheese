@@ -32,6 +32,7 @@ Button botao;
 LCD tela;
 Leds leds;
 Jogo jogo;
+Timer timer;
 
 
 void setup() {
