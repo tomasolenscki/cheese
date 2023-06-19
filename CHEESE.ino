@@ -31,6 +31,7 @@ Hall hall;
 Button botao;
 LCD tela;
 Leds leds;
+Jogo jogo;
 
 
 void setup() {

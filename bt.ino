@@ -11,7 +11,7 @@ Função que envia a matriz do jogo via bluetooth
   {
     for(int j = 0; j < 5; j++)
     {
-      manda = String(tabuleiro_cheese[i][j]);
+      manda = String(jogo.tabuleiro_cheese[i][j]);
       bt.print(manda);
       bt.print(",");
     }

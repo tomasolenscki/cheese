@@ -84,19 +84,19 @@ Função que mostra o modo de jogo selecionado e confirma a seleção
   modo_de_jogo = opcoes_menu_mdj[contador_vertical_mdj];
   switch (contador_vertical_mdj){
     case (0):
-      game = CHEESE;
+      jogo.game = CHEESE;
       timer = false;
     break;
     case (1):
-      game = CHEESE_5;
+      jogo.game = CHEESE_5;
       timer = true;
     break;
     case (2):
-      game = CHEESE_10;
+      jogo.game = CHEESE_10;
       timer = true;
     break;
     case (3):
-      game = CHEESE_15;
+      jogo.game = CHEESE_15;
       timer = true;
     break;
   }
@@ -132,7 +132,7 @@ Função que mostra mensagem de vitória
   lcd.clear();
   lcd.print("Fim de jogo");
   lcd.setCursor(0,1);
-  if (jogador_vencedor == MARROM)
+  if (jogo.jogador_vencedor == MARROM)
     lcd.print("MARROM VENCEU");
   else 
     lcd.print("BRANCO VENCEU");
@@ -146,7 +146,7 @@ função que mostra o fim do tempo e qual rato venceu
   lcd.clear();
   lcd.print("Acabou o tempo");
   lcd.setCursor(0,1);
-  if (jogador_vencedor == MARROM)
+  if (jogo.jogador_vencedor == MARROM)
     lcd.print("MARROM VENCEU");
   else 
     lcd.print("BRANCO VENCEU");
@@ -164,7 +164,7 @@ Função para declarar empate
 
 }
 
-String LCD::padZero(int valor) {
+String padZero(int valor) {
 /*
 Função para manter numeros com 2 digitos independentemente do valor
 */

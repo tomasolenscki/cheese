@@ -3,7 +3,9 @@
 #include "maquina_estados.h"
 #include "hall.h"
 
-void preenche_cor(int jogador){
+Jogo::Jogo(){}
+
+void Jogo::preenche_cor(int jogador){
 /*
 Função que preenche o tabuleiro com a cor de um jogador
 Funciona como animação de vitória para o bluetooth
@@ -26,7 +28,7 @@ Funciona como animação de vitória para o bluetooth
   }
 }
 
-bool peca_pronta(){
+bool Jogo::peca_pronta(){
 /*
 Indica que todas as peças estão posicionadas na posição inicial
 */
@@ -42,7 +44,7 @@ Indica que todas as peças estão posicionadas na posição inicial
 
 }
 
-bool peca_levantou(){
+bool Jogo::peca_levantou(){
 /*
 Indica que uma peça foi levantada
 */
@@ -69,7 +71,7 @@ Indica que uma peça foi levantada
   return false;
 }
 
-bool peca_abaixou(){
+bool Jogo::peca_abaixou(){
 /*
 Indica que uma peça foi posta no tabuleiro
 */
@@ -96,7 +98,7 @@ Indica que uma peça foi posta no tabuleiro
   return false;
 }
 
-void reinicia_tabuleiro_cheese(){
+void Jogo::reinicia_tabuleiro_cheese(){
 /*
 Volta a matriz de tabuleiro à função original
 */
@@ -112,7 +114,7 @@ Volta a matriz de tabuleiro à função original
 
 }
 
-int possible_moves() {
+int Jogo::possible_moves() {
 /*
 Função que calcula os movimentos possíveis para uma peça no tabuleiro
 */
@@ -147,7 +149,7 @@ Função que calcula os movimentos possíveis para uma peça no tabuleiro
   return num_moves;
 }
 
-bool cheese_preso() {
+bool Jogo::cheese_preso() {
 /*
 Função que verifica se o cheese não pode mais se mexer
 */
@@ -182,7 +184,7 @@ Função que verifica se o cheese não pode mais se mexer
   
 }
 
-bool verifica_jogador_cheese(){
+bool Jogo::verifica_jogador_cheese(){
 /*
 Função que verifica se a peça levantada foi do jogador da vez
 */
@@ -196,7 +198,7 @@ Função que verifica se a peça levantada foi do jogador da vez
   return false;
 }
 
-void acha_cheese(){
+void Jogo::acha_cheese(){
 /*
 Função para encontrar as coordenadas x e y do cheese
 */
@@ -212,7 +214,7 @@ Função para encontrar as coordenadas x e y do cheese
   }
 }
 
-int acha_ratos_brancos(){
+int Jogo::acha_ratos_brancos(){
 /*
 Função para achar as coordenadas dos 5 ratos brancos
 */
@@ -233,7 +235,7 @@ Função para achar as coordenadas dos 5 ratos brancos
   return 0;
 }
 
-int acha_ratos_marrons(){
+int Jogo::acha_ratos_marrons(){
 /*
 Função para achar as coordenadas dos 5 ratos marrons
 */
@@ -254,7 +256,7 @@ Função para achar as coordenadas dos 5 ratos marrons
   return 0;
 }
 
-bool verifica_casa_escolhida(int x_fim, int y_fim){
+bool Jogo::verifica_casa_escolhida(int x_fim, int y_fim){
 /*
 Função que verifica se a casa escolhida para uma jogada é ou não legal
 */
@@ -274,7 +276,7 @@ Função que verifica se a casa escolhida para uma jogada é ou não legal
 
 }  
 
-int verifica_jogada(){
+int Jogo::verifica_jogada(){
 /*
 Função que verifica se uma jogada é legal ou não
 Ela separa as diferentes possibilidades de jogada nos seus respectivos eventos internos
@@ -333,7 +335,7 @@ Também atualiza a matriz do jogo caso a jogada seja legal
 }
 
 
-int trata_peca_ilegal(){
+int Jogo::trata_peca_ilegal(){
 /*
 Função que percebe se uma jogada ilegal foi refeita as condições originais
 */

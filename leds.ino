@@ -79,7 +79,7 @@ As possíveis jogadas são acessas em verde e a casa atual em amarelo
     break;
   }
 
-  numero_de_movimentos = possible_moves();
+  numero_de_movimentos = jogo.possible_moves();
   for (int i = 0; i<numero_de_movimentos; i++){
     x = moves[i].x;
     y = moves[i].y;
@@ -163,10 +163,10 @@ Animação com os LEDs que indica a vez de um dos jogadores
 */
 
   int x, y;
-  if (cheese) {
+  if (jogo.cheese) {
     x = pos_cheese.x;
     y = pos_cheese.y;
-    if (jogador_da_vez ==  MARROM){
+    if (jogo.jogador_da_vez ==  MARROM){
       acende_todos_os_leds(rgb_apagado);
       switch (x){
         case (0):
@@ -215,7 +215,7 @@ Animação com os LEDs que indica a vez de um dos jogadores
   }
 
   else{
-    if (jogador_da_vez == MARROM){
+    if (jogo.jogador_da_vez == MARROM){
       acende_todos_os_leds(rgb_apagado);
       for(int i=0; i<=4; i++){
         x = pos_ratos_marrons[i].x;
@@ -325,7 +325,7 @@ void Leds::animacao_vencedor(){
 Animação do vencedor do jogo
 */
 
-  if (jogador_vencedor == BRANCO){
+  if (jogo.jogador_vencedor == BRANCO){
     for (int x = 0; x <= 4; x++) {
       for (int y = 0; y <= 4 ; y++) {
         switch (x){
@@ -422,7 +422,7 @@ Animação do vencedor do jogo
   }
 
 
-  if (jogador_vencedor == MARROM){
+  if (jogo.jogador_vencedor == MARROM){
     for (int x = 0; x <= 4; x++) {
       for (int y = 0; y <= 4 ; y++) {
         switch (x){
