@@ -26,9 +26,11 @@
 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 SoftwareSerial bt(tx, rx); //Rx Tx
+
 Hall hall;
 Button botao;
 LCD tela;
+Leds leds;
 
 
 void setup() {
@@ -61,7 +63,7 @@ void setup() {
     // set master brightness control
   FastLED.setBrightness(BRIGHTNESS);
 
-  acende_todos_os_leds(rgb_apagado);
+  leds.acende_todos_os_leds(rgb_apagado);
 
   randomSeed(analogRead(8));
 

@@ -115,18 +115,18 @@ int executarAcao(int codigoAcao) {
       Serial.println("A03");
       tela.menu_RIGHT_mdj();
       reinicia_tabuleiro_cheese();
-      inicial_cheese();
+      leds.inicial_cheese();
       break;
     case A04:
       Serial.println("A04");
-      acende_todos_os_leds(rgb_apagado);
+      leds.acende_todos_os_leds(rgb_apagado);
       tela.menu_principal();
       break;
     case A05:
       lcd.clear();
-      acende_todos_os_leds(rgb_apagado);
-      animacao_inicio();
-      acende_todos_os_leds(rgb_apagado);
+      leds.acende_todos_os_leds(rgb_apagado);
+      leds.animacao_inicio();
+      leds.acende_todos_os_leds(rgb_apagado);
       lcd.print("Boa partida");
       lcd.setCursor(0,1);
       jogador_da_vez == 1 ? lcd.print(String("comeca ") + String("marrom")) : lcd.print(String("comeca ") + String("branco"));
@@ -139,7 +139,7 @@ int executarAcao(int codigoAcao) {
       jogador_da_vez = (int) random(1,2);
       acha_ratos_marrons();
       acha_ratos_brancos();
-      animacao_vez_do_jogador();
+      leds.animacao_vez_do_jogador();
       estadoSalvo = estado;
       if (timer){
         comeco_intervalo = millis();
@@ -149,7 +149,7 @@ int executarAcao(int codigoAcao) {
     case A07:
       Serial.println("A07");
       estadoSalvo = estado;
-      acende_possiveis_jogadas();
+      leds.acende_possiveis_jogadas();
       break;
     case A08:
       Serial.println("A08");
@@ -158,7 +158,7 @@ int executarAcao(int codigoAcao) {
     case A09:
       Serial.println("A09");
       estadoSalvo = estado;
-      acende_todos_os_leds(rgb_apagado);
+      leds.acende_todos_os_leds(rgb_apagado);
       delay(100);
       return verifica_jogada();
       break;
@@ -174,7 +174,7 @@ int executarAcao(int codigoAcao) {
     case A12:
       preenche_cor(jogador_vencedor);
       tela.vitoria_derrota();
-      animacao_vencedor();
+      leds.animacao_vencedor();
       if (timer){
         contando_tempo = false;
         inicializa_tempos();
@@ -185,17 +185,17 @@ int executarAcao(int codigoAcao) {
     case A13:
       Serial.println("A13");
       estadoSalvo = estado;
-      animacao_vez_do_jogador();
+      leds.animacao_vez_do_jogador();
       break;
     case A14:
       Serial.println("A14");
       estadoSalvo = estado;
-      animacao_vez_do_jogador();
+      leds.animacao_vez_do_jogador();
       break;
     case A15:
       tela.acaba_tempo();
       preenche_cor(jogador_vencedor);
-      animacao_vencedor();
+      leds.animacao_vencedor();
       inicializa_tempos();
       tela.menu_UP();
       Serial.println("A15");
@@ -225,7 +225,7 @@ int executarAcao(int codigoAcao) {
       Serial.println("A19");
       tela.menu_RIGHT_fim();
       reinicia_tabuleiro_cheese();
-      inicial_cheese();
+      leds.inicial_cheese();
       break;
     case A20:
       Serial.println("A20");

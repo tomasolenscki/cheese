@@ -1,7 +1,9 @@
 #include <Arduino.h>
 #include "leds.h"
 
-void acende_todos_os_leds(CRGB cor){
+Leds::Leds(){}
+
+void Leds::acende_todos_os_leds(CRGB cor){
 /*
 Função que acende todos os leds com a cor especificada.
 Pode também apagar todos os leds caso a cor seja (0, 0, 0)
@@ -34,7 +36,7 @@ Pode também apagar todos os leds caso a cor seja (0, 0, 0)
 
 }
 
-void inicial_cheese(){
+void Leds::inicial_cheese(){
 /*
 Função que acende as casas iniciasi do jogo cheese
 */
@@ -49,7 +51,7 @@ Função que acende as casas iniciasi do jogo cheese
   FastLED.show();
 }
 
-void acende_possiveis_jogadas(){
+void Leds::acende_possiveis_jogadas(){
 /*
 Função que acende as possíveis jogadas de um rato
 As possíveis jogadas são acessas em verde e a casa atual em amarelo
@@ -104,7 +106,7 @@ As possíveis jogadas são acessas em verde e a casa atual em amarelo
 
 }
 
-void acende_casas_ilegais(){
+void Leds::acende_casas_ilegais(){
 /*
 Função que acende as casas quando um movimento ilegal é realizado
 A casa posta incorreta é acessa em vermelho escuro 
@@ -155,7 +157,7 @@ A casa original do rato é acessa em vermelho claro
 
 }
 
-void animacao_vez_do_jogador(){
+void Leds::animacao_vez_do_jogador(){
 /*
 Animação com os LEDs que indica a vez de um dos jogadores
 */
@@ -271,7 +273,7 @@ Animação com os LEDs que indica a vez de um dos jogadores
   }
 }
 
-void animacao_inicio(){
+void Leds::animacao_inicio(){
 /*
 Animação do início do jogo
 */
@@ -318,7 +320,7 @@ Animação do início do jogo
 
 
 
-void animacao_vencedor(){
+void Leds::animacao_vencedor(){
 /*
 Animação do vencedor do jogo
 */
@@ -518,7 +520,7 @@ Animação do vencedor do jogo
 }
 
 
-bool verificarPosicaoEncontradaBranco(int x, int y) {
+bool Leds::verificarPosicaoEncontradaBranco(int x, int y) {
 /*
 Função que verifica se algum rato branco esta em uma posição do tabuleiro
 */
@@ -531,7 +533,7 @@ Função que verifica se algum rato branco esta em uma posição do tabuleiro
   return false;
 }
 
-bool verificarPosicaoEncontradaMarrom(int x, int y) {
+bool Leds::verificarPosicaoEncontradaMarrom(int x, int y) {
 /*
 Função que verifica se algum rato marrom esta em uma posição do tabuleiro
 */

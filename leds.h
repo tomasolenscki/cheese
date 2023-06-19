@@ -29,14 +29,24 @@ const CRGB rgb_azul = CRGB(0, 100, 100);
 const CRGB rgb_amarelo = CRGB(100, 100, 0);
 const CRGB rgb_apagado = CRGB(0, 0, 0);
 
-void acende_todos_os_leds(CRGB cor);
-void inicial_cheese();
-void acende_possiveis_jogadas();
-void acende_casas_ilegais();
-void animacao_vez_do_jogador();
-void animacao_inicio();
-void animacao_vencedor();
-bool verificarPosicaoEncontradaBranco(int x, int y);
-bool verificarPosicaoEncontradaMarrom(int x, int y);
+class Leds {
+
+  public:
+  Leds();
+  void acende_todos_os_leds(CRGB cor);
+  void inicial_cheese();
+  void acende_possiveis_jogadas();
+  void acende_casas_ilegais();
+  void animacao_vez_do_jogador();
+  void animacao_inicio();
+  void animacao_vencedor();
+
+  private:
+  bool verificarPosicaoEncontradaBranco(int x, int y);
+  bool verificarPosicaoEncontradaMarrom(int x, int y);
+
+};
+
+
 
 #endif // LEDS_H_INCLUDED

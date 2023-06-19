@@ -16,6 +16,8 @@ typedef struct {
     int y;
 } Move;
 
+class Jogo
+
 const int tabuleiro_inicial_cheese[5][5] = {{0, 0, 0, 0, 0},
                                       {1, 1, 1, 1, 1},
                                       {1, 1, 0, 1, 1}, 

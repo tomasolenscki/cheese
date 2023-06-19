@@ -338,7 +338,7 @@ int trata_peca_ilegal(){
 Função que percebe se uma jogada ilegal foi refeita as condições originais
 */
 
-  acende_casas_ilegais();
+  leds.acende_casas_ilegais();
   hall.le_sensores();
 
   for(int i=0; i<=4; i++){
