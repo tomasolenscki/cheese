@@ -3,6 +3,21 @@
 
 Leds::Leds(){}
 
+void Leds::setup(){
+
+  FastLED.addLeds<WS2812B, LED_PIN_1, COLOR_ORDER>(leds0, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2812B, LED_PIN_2, COLOR_ORDER>(leds1, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2812B, LED_PIN_3, COLOR_ORDER>(leds2, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2812B, LED_PIN_4, COLOR_ORDER>(leds3, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2812B, LED_PIN_5, COLOR_ORDER>(leds4, NUM_LEDS).setCorrection(TypicalLEDStrip);
+
+    // set master brightness control
+  FastLED.setBrightness(BRIGHTNESS);
+
+  leds.acende_todos_os_leds(rgb_apagado);
+
+}
+
 void Leds::acende_todos_os_leds(CRGB cor){
 /*
 Função que acende todos os leds com a cor especificada.

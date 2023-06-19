@@ -17,7 +17,7 @@ Função que lê todos os sensores do tabuleiro e armazena o valor de todas as l
 
 }
 
-void Hall::inicializa_pinos(){
+void Hall::setup(){
 /*
 Função para inicializar os pinos dos sensores hall
 */

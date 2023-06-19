@@ -5,8 +5,8 @@
 class Hall {
   public:
   Hall();
+  void setup();
   void le_sensores();
-  void inicializa_pinos();
   int sensores[5][5];
   private:
   int HallSensor[5][5] = {{33, 32, 31, 30, 34},

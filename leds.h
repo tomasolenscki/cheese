@@ -13,13 +13,6 @@
 
 #define BRIGHTNESS          200   //brilho dos leds  0 a 255
 
-
-CRGB leds0[NUM_LEDS];
-CRGB leds1[NUM_LEDS];
-CRGB leds2[NUM_LEDS];
-CRGB leds3[NUM_LEDS];
-CRGB leds4[NUM_LEDS];
-
 const CRGB rgb_marrom = CRGB(139, 69, 19);
 const CRGB rgb_branco = CRGB(100, 100, 100);
 const CRGB rgb_verde = CRGB(0, 100, 0);
@@ -33,6 +26,7 @@ class Leds {
 
   public:
   Leds();
+  void setup();
   void acende_todos_os_leds(CRGB cor);
   void inicial_cheese();
   void acende_possiveis_jogadas();
@@ -40,6 +34,12 @@ class Leds {
   void animacao_vez_do_jogador();
   void animacao_inicio();
   void animacao_vencedor();
+
+  CRGB leds0[NUM_LEDS];
+  CRGB leds1[NUM_LEDS];
+  CRGB leds2[NUM_LEDS];
+  CRGB leds3[NUM_LEDS];
+  CRGB leds4[NUM_LEDS];
 
   private:
   bool verificarPosicaoEncontradaBranco(int x, int y);

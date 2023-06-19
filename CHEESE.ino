@@ -48,24 +48,13 @@ void setup() {
   Serial.begin(9600);
   bt.begin(9600);
   lcd.begin(16,2);
+
   tela.menu_principal();
+  hall.setup();
+  leds.setup();
+
   delay(2000);
   Serial.println("Maquina de Estados iniciada");
-  // make the pushbutton's pin an input:
-
-
-  hall.inicializa_pinos();
-
-  FastLED.addLeds<WS2812B, LED_PIN_1, COLOR_ORDER>(leds0, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  FastLED.addLeds<WS2812B, LED_PIN_2, COLOR_ORDER>(leds1, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  FastLED.addLeds<WS2812B, LED_PIN_3, COLOR_ORDER>(leds2, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  FastLED.addLeds<WS2812B, LED_PIN_4, COLOR_ORDER>(leds3, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  FastLED.addLeds<WS2812B, LED_PIN_5, COLOR_ORDER>(leds4, NUM_LEDS).setCorrection(TypicalLEDStrip);
-
-    // set master brightness control
-  FastLED.setBrightness(BRIGHTNESS);
-
-  leds.acende_todos_os_leds(rgb_apagado);
 
   randomSeed(analogRead(8));
 
