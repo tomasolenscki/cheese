@@ -208,6 +208,7 @@ int executarAcao(int codigoAcao) {
     case A17:
       Serial.println("A17");
       jogo.preenche_cor(3);
+      leds.animacao_empate();
       tela.contador_vertical_fim = 0;
       tela.menu_RIGHT_fim();
       jogo.reinicia_tabuleiro_cheese();

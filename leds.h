@@ -34,6 +34,7 @@ class Leds {
   void animacao_vez_do_jogador();
   void animacao_inicio();
   void animacao_vencedor();
+  void animacao_empate();
 
   CRGB leds0[NUM_LEDS];
   CRGB leds1[NUM_LEDS];

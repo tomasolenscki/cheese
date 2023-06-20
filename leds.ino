@@ -534,6 +534,18 @@ Animação do vencedor do jogo
   }
 }
 
+void Leds::animacao_empate(){
+
+  acende_todos_os_leds(rgb_amarelo);
+  delay(700);
+  acende_todos_os_leds(rgb_apagado);
+  delay(700);
+  acende_todos_os_leds(rgb_amarelo);
+  delay(700);
+  acende_todos_os_leds(rgb_apagado);
+
+}
+
 
 bool Leds::verificarPosicaoEncontradaBranco(int x, int y) {
 /*
